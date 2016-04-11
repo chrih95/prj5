@@ -1,1 +1,45 @@
 
+import CS2114.Button;
+import CS2114.Window;
+
+public class GUIMusicWindow {
+    
+    public Button previousButton;
+    public Button nextButton;
+    public Button sortByArtistButton;
+    public Button sortByTitleButton;
+    public Button sortByYearButton;
+    public Button sortByGenreButton;
+    public Button representHobbyButton;
+    public Button representMajorButton;
+    public Button representRegionButton;
+    public Button quitButton;
+    public Window window;
+    public Glyph glyph;
+    
+    public GUIMusicWindow() {
+        
+    }
+    
+    public Window getWindow() {
+        return window;
+    }
+    
+    public void clickedCategory(Button button) {
+        
+    }
+    
+    public void clickedRepresentation(Button button) {
+        
+    }
+    
+    public void clickedMove(Button button) {
+        
+    }
+    
+    public void clickedQuit(Button button) {
+        
+    }
+    
+
+}
