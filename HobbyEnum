@@ -1,0 +1,6 @@
+package prj5;
+
+public enum HobbyEnum {
+    READING, SPORTS, MUSIC, ART;
+
+}
