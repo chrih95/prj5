@@ -37,5 +37,9 @@ public class Song {
     public int getIndex() {
         return index;
     }
-
+    
+    public String toString() {
+    
+    }
+ 
 }
