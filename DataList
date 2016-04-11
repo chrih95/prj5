@@ -1,0 +1,62 @@
+package music;
+
+import java.util.LinkedList; // DELETE IMPORT ONCE LINKEDLIST IS FINISHED
+
+public class DataList {
+
+    
+    private LinkedList<Song> songList;
+    private LinkedList<Person> personList;
+    
+    /**
+     * Creates a new DataList with LinkedLists of songs and people
+     */
+    public DataList() {
+        
+        songList = new LinkedList<Song>();
+        personList = new LinkedList<Person>();
+    }
+    
+    /**
+     * Method returns the LinkedList of people
+     * @return the LinkedList of people
+     */
+    public LinkedList<Person> getPersonList() {
+        
+        return personList;
+    }
+    
+    /**
+     * Method returns the LinkedList of songs
+     * @return the LinkedList of songs
+     */
+    public LinkedList<Song> getSongList() {
+        
+        return songList;
+    }
+    
+    /**
+     * Method adds a Song to the LinkedList of songs
+     * @param newSong    The Song being added to the songList
+     */
+    public void addSong(Song newSong) {
+        
+        if (newSong != null) {
+            
+            songList.add(newSong);
+        }
+        
+    }
+    
+    /**
+     * Method adds a Person to the LinkedList of people
+     * @param newPerson    The Person being added to the personList
+     */
+    public void addPerson(Person newPerson) {
+        
+        if (newPerson != null) {
+            
+            personList.add(newPerson);
+        }
+    }
+}
