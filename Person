@@ -1,0 +1,37 @@
+public class Person {
+    
+    public Major major;
+    public Hobby hobby;
+    public Region region;
+    public int index;
+    
+    public Person() {
+        
+    }
+    
+    public Person(Major major, Hobby hobby, Region region, int index) {
+        this.major = major;
+        this.hobby = hobby;
+        this.region = region;
+        this.index = index;
+    }
+    
+    public Major getMajor() {
+        return major;
+    }
+    
+    public Hobby getHobby() {
+        return hobby;
+    }
+    
+    public Region getRegion() {
+        return region;
+    }
+    
+    public int getIndex() {
+        return index;
+    }
+    
+    
+
+}
