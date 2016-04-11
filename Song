@@ -1,0 +1,41 @@
+public class Song {
+    
+    public String genre;
+    public String artist;
+    public String title;
+    public int year;
+    public int index;
+    
+    public Song() {
+        
+    }
+    
+    public Song(String genre, String artist, String title, int year, int index) {
+        this.genre = genre;
+        this.artist = artist;
+        this.title = title;
+        this.year = year;
+        this.index = index;
+    }
+    
+    public String getGenre() {
+        return genre;
+    }
+    
+    public String getArtist() {
+        return artist;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
+    
+    public int getYear() {
+        return year;
+    }
+    
+    public int getIndex() {
+        return index;
+    }
+
+}
