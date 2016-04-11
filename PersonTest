@@ -1,0 +1,26 @@
+package prj5;
+
+public class PersonTest extends student.TestCase {
+    public Person person;
+    
+    public void setUp() {
+        person = new Person(MajorEnum.COMPSCI, HobbyEnum.ART, RegionEnum.NORTHEAST, 0);
+    }
+    
+    public void testGetMajor() {
+        assertEquals(MajorEnum.COMPSCI, person.getMajor());
+    }
+    
+    public void testGetHobby() {
+        assertEquals(HobbyEnum.ART, person.getHobby());
+    }
+    
+    public void testGetRegion() {
+        assertEquals(RegionEnum.NORTHEAST, person.getRegion());
+    }
+    
+    public void testGetIndex() {
+        assertEquals(0, person.getIndex());
+    }
+
+}
