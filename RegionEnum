@@ -1,0 +1,6 @@
+package prj5;
+
+public enum RegionEnum {
+    NORTHEAST, SOUTHEAST, USOTHER, OTHER;
+
+}
