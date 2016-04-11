@@ -1,1 +1,105 @@
+package music;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class ListReader {
+
+    /**
+     * Creates a new ListReader() that reads from a given file
+     * @param fileName    The name of the file being scanned
+     */
+    public ListReader(String personFile, String songFile) {
+        
+        DataList musicList = readDataFiles(personFile, songFile);
+        new MusicWindow(musicList);
+    }
+    
+    /**
+     * 
+     * @param personFile    The name of the file with person data
+     * @param songFile      The name of the file with song data
+     * @return the read file as a DataList
+     */
+    public DataList readDataFiles(String personFile, String songFile) {
+        
+        DataList dataFile = new DataList();
+        //scans person file
+        Scanner fileScan = null;
+        try {
+            
+            fileScan = new Scanner(new File(personFile));
+        }
+        catch (FileNotFoundException exception) {
+            
+            System.out.println(exception.getMessage());
+            System.exit(0);
+        }
+        
+        fileScan.nextLine(); //advances past the first line
+        LinkedList<Person> personList = new LinkedList<Person>();
+        
+        while (fileScan.hasNextLine())
+        {
+            String personLine = fileScan.nextLine();
+            String[] personData = personLine.split(",");
+            String major = personData[2];
+            String region = personData[3];
+            String hobby = personData[4];
+            int numSongs = (personData.length - 5) / 2;
+            String[] heard = new String[numSongs];
+            String[] liked = new String[numSongs];
+            int index = 0;
+            
+            for (int i = 5; i < personData.length; i+=2) {
+                
+                heard[index] = personData[i];
+                index++;
+            }
+            index = 0;
+            
+            for (int i = 6; i < personData.length; i+=2) {
+                
+                liked[index] = personData[i];
+                index ++;
+            }
+            index = 0;
+            dataFile.addPerson(new Person(major, region, hobby, heard, liked));
+        }
+        
+        //scans song file
+        fileScan = null;
+        try {
+            
+            fileScan = new Scanner(new File(songFile));
+        }
+        catch (FileNotFoundException exception) {
+            
+            System.out.println(exception.getMessage());
+            System.exit(0);
+        }
+        
+        fileScan.nextLine();
+        LinkedList<Song> songList = new LinkedList<Song>();
+        int index = 0;
+        
+        while (fileScan.hasNextLine())
+        {
+            String songLine = fileScan.nextLine();
+            String[] songData = songLine.split(",");
+            String title = songData[0];
+            String artist = songData[1];
+            int year = Integer.parseInt(songData[2]);
+            String genre = songData[3];
+            
+            songList.add(new Song(genre, artist, title, year, index));
+            index++;
+        }
+        
+        fileScan.close();
+        return dataFile;
+    }
+    
+}
