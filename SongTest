@@ -1,0 +1,31 @@
+package prj5;
+
+public class SongTest extends student.TestCase {
+    
+    public Song song;
+    
+    public void setUp() {
+        song = new Song("Pop", "Adele", "Hello", 2016, 23);
+    }
+    
+    public void testGetGenre() {
+        assertEquals("Pop", song.getGenre());
+    }
+    
+    public void testGetArtist() {
+        assertEquals("Adele", song.getArtist());
+    }
+    
+    public void testGetTitle() {
+        assertEquals("Hello", song.getTitle());
+    }
+    
+    public void testGetYear() {
+        assertEquals(2016, song.getYear());
+    }
+    
+    public void testGetIndex() {
+        assertEquals(23, song.getIndex());
+    }
+
+}
