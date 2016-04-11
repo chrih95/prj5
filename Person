@@ -1,40 +1,81 @@
+package music;
+
 public class Person {
-    
-    public Major major;
-    public Hobby hobby;
-    public Region region;
-    public int index;
-    
+
+    private String major;
+    private String hobby;
+    private String region;
+
     public Person() {
-        
+
     }
-    
-    public Person(Major major, Hobby hobby, Region region, int index) {
+
+    /**
+     * Creates a new Person with a major, hobby, region, and arrays of whether
+     * or not the Person has heard and liked certain songs 
+     * 
+     * @param major
+     *            The major of the Person
+     * @param hobby
+     *            The hobby that the Person has
+     * @param region
+     *            The region the Person is from
+     * @param heard
+     *            The array of whether or not the Person has heard certain songs
+     * @param liked
+     *            The array of whether or not the Person has liked certain songs
+     */
+    public Person(String major, String hobby, String region, String[] heard,
+            String[] liked) {
+
         this.major = major;
         this.hobby = hobby;
         this.region = region;
-        this.index = index;
     }
-    
-    public Major getMajor() {
+
+    /**
+     * Method gets the major of the Person
+     * 
+     * @return the Person's major
+     */
+    public String getMajor() {
         return major;
     }
-    
-    public Hobby getHobby() {
+
+    /**
+     * Method gets the hobby that the Person has
+     * 
+     * @return the Person's hobby
+     */
+    public String getHobby() {
         return hobby;
     }
-    
-    public Region getRegion() {
+
+    /**
+     * Method gets the region that the Person is from
+     * 
+     * @return the Person's region
+     */
+    public String getRegion() {
         return region;
     }
-    
-    public int getIndex() {
-        return index;
-    }
-    
-    public String toString() {
-    
-    }
-    
 
+    /**
+     * Method returns the String representation of the Person, including their
+     * major, hobby, and region.
+     * 
+     * @return the String representation of the Person
+     */
+    @Override
+    public String toString() {
+
+        StringBuilder personString = new StringBuilder("[Major: ");
+        personString.append(this.getMajor());
+        personString.append(", Hobby: ");
+        personString.append(this.getHobby());
+        personString.append(", Region: ");
+        personString.append(this.getRegion());
+        personString.append("]");
+        return personString.toString();
+    }
 }
