@@ -1,0 +1,16 @@
+package prj5;
+
+import CS2114.SquareShape;
+
+public class Glyph {
+    
+    public SquareShape firstBar;
+    public SquareShape secondBar;
+    public SquareShape thirdBar;
+    public SquareShape fourthBar;
+    
+    public void buildGlyph() {
+        
+    }
+
+}
