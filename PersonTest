@@ -18,9 +18,4 @@ public class PersonTest extends student.TestCase {
     public void testGetRegion() {
         assertEquals(RegionEnum.NORTHEAST, person.getRegion());
     }
-    
-    public void testGetIndex() {
-        assertEquals(0, person.getIndex());
-    }
-
 }
