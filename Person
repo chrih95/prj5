@@ -1,14 +1,10 @@
-package music;
+package prj5;
 
 public class Person {
 
-    private String major;
-    private String hobby;
-    private String region;
-
-    public Person() {
-
-    }
+    private MajorEnum major;
+    private HobbyEnum hobby;
+    private RegionEnum region;
 
     /**
      * Creates a new Person with a major, hobby, region, and arrays of whether
@@ -25,7 +21,7 @@ public class Person {
      * @param liked
      *            The array of whether or not the Person has liked certain songs
      */
-    public Person(String major, String hobby, String region, String[] heard,
+    public Person(MajorEnum major, HobbyEnum hobby, RegionEnum region, String[] heard,
             String[] liked) {
 
         this.major = major;
@@ -38,7 +34,7 @@ public class Person {
      * 
      * @return the Person's major
      */
-    public String getMajor() {
+    public MajorEnum getMajor() {
         return major;
     }
 
@@ -47,7 +43,7 @@ public class Person {
      * 
      * @return the Person's hobby
      */
-    public String getHobby() {
+    public HobbyEnum getHobby() {
         return hobby;
     }
 
@@ -56,7 +52,7 @@ public class Person {
      * 
      * @return the Person's region
      */
-    public String getRegion() {
+    public RegionEnum getRegion() {
         return region;
     }
 
@@ -70,11 +66,64 @@ public class Person {
     public String toString() {
 
         StringBuilder personString = new StringBuilder("[Major: ");
-        personString.append(this.getMajor());
+        switch(this.getMajor()) {
+        
+            case COMPSCI:
+                personString.append("Computer Science");
+                break;
+
+            case MATH:
+                personString.append("Math");
+                break;
+
+            case ENGINEERING:
+                personString.append("Other Engineering");
+                break;
+
+            default:
+                personString.append("Other Non-Engineering");
+                break;
+        }
         personString.append(", Hobby: ");
-        personString.append(this.getHobby());
+        
+        switch(this.getHobby()) {
+        
+            case READING:
+                personString.append("Reading");
+                break;
+
+            case SPORTS:
+                personString.append("Sports");
+                break;
+
+            case MUSIC:
+                personString.append("Music");
+                break;
+
+            default:
+                personString.append("Art");
+                break;
+        }
         personString.append(", Region: ");
-        personString.append(this.getRegion());
+
+        switch(this.getRegion()) {
+        
+            case NORTHEAST:
+                personString.append("Northeast");
+                break;
+
+            case SOUTHEAST:
+                personString.append("Southeast");
+                break;
+
+            case USOTHER:
+                personString.append("Other US region");
+                break;
+
+            default:
+                personString.append("Outside of the US");
+                break;
+        }
         personString.append("]");
         return personString.toString();
     }
