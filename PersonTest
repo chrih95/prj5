@@ -1,21 +1,63 @@
 package prj5;
 
 public class PersonTest extends student.TestCase {
-    public Person person;
     
+    private Person person;
+    private String[] likedTest = {"yes","yes","no","no"};
+    private String[] heardTest = {"yes","yes","no","no"};
+    
+    /**
+     * Sets up the test case
+     */
+    @Override
     public void setUp() {
-        person = new Person(MajorEnum.COMPSCI, HobbyEnum.ART, RegionEnum.NORTHEAST, 0);
+        
+        person = new Person(MajorEnum.COMPSCI, HobbyEnum.ART,
+                RegionEnum.NORTHEAST, likedTest, heardTest);
     }
     
+    /**
+     * Tests getMajor() on a person with a computer science major
+     */
     public void testGetMajor() {
         assertEquals(MajorEnum.COMPSCI, person.getMajor());
     }
     
+    /**
+     * Tests getHobby() on a person with an art hobby
+     */
     public void testGetHobby() {
         assertEquals(HobbyEnum.ART, person.getHobby());
     }
     
+    /**
+     * Tests getRegion() on a person from the northeast
+     */
     public void testGetRegion() {
         assertEquals(RegionEnum.NORTHEAST, person.getRegion());
+    }
+    
+    /**
+     * Tests toString() with all Enum values for all three Enum classes
+     */
+    public void testToString() {
+        
+        assertEquals("[Major: Computer Science, Hobby: Art, Region: Northeast]"
+                , person.toString());
+        
+        Person person2 = new Person(MajorEnum.MATH, HobbyEnum.SPORTS,
+                RegionEnum.SOUTHEAST, likedTest, heardTest);
+        assertEquals("[Major: Math, Hobby: Sports, Region: Southeast]"
+                , person2.toString());
+        
+        Person person3 = new Person(MajorEnum.ENGINEERING, HobbyEnum.MUSIC,
+                RegionEnum.USOTHER, likedTest, heardTest);
+        assertEquals("[Major: Other Engineering, Hobby: Music, Region: Other US"
+                + " region]", person3.toString());
+        
+        Person person4 = new Person(MajorEnum.OTHER, HobbyEnum.ART,
+                RegionEnum.OTHER, likedTest, heardTest);
+        assertEquals("[Major: Other Non-Engineering, Hobby: Art, Region: "
+                + "Outside of the US]", person4.toString());
     }
 }
