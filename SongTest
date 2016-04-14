@@ -2,30 +2,63 @@ package prj5;
 
 public class SongTest extends student.TestCase {
     
-    public Song song;
+    private Song song;
     
+    /**
+     * Sets up the test case
+     */
+    @Override
     public void setUp() {
+        
         song = new Song("Pop", "Adele", "Hello", 2016, 23);
     }
     
+    /**
+     * Tests getGenre() on a pop Song
+     */
     public void testGetGenre() {
+        
         assertEquals("Pop", song.getGenre());
     }
     
+    /**
+     * Tests getArtist() on a Song by Adele
+     */
     public void testGetArtist() {
+        
         assertEquals("Adele", song.getArtist());
     }
     
+    /**
+     * Tests getTitle() on the Song "Hello"
+     */
     public void testGetTitle() {
+        
         assertEquals("Hello", song.getTitle());
     }
     
+    /**
+     * Tests getYear() on a Song from 2016
+     */
     public void testGetYear() {
+        
         assertEquals(2016, song.getYear());
     }
     
+    /**
+     * Tests getYear() on a Song with an index of 23
+     */
     public void testGetIndex() {
+        
         assertEquals(23, song.getIndex());
     }
 
+    /**
+     * Tests toString on a Song
+     */
+    public void testToString() {
+        
+        assertEquals("[Genre: Pop, Artist: Adele, Title: Hello, Year: 2016, "
+                + "Index: 23]", song.toString());
+    }
 }
