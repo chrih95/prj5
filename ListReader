@@ -1,15 +1,14 @@
-package music;
+package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class ListReader {
-
     /**
      * Creates a new ListReader() that reads from a given file
-     * @param fileName    The name of the file being scanned
+     * @param personFile    The name of the file with person data
+     * @param songFile      The name of the file with song data
      */
     public ListReader(String personFile, String songFile) {
         
@@ -18,7 +17,7 @@ public class ListReader {
     }
     
     /**
-     * 
+     * Reads the data from two 
      * @param personFile    The name of the file with person data
      * @param songFile      The name of the file with song data
      * @return the read file as a DataList
@@ -26,7 +25,23 @@ public class ListReader {
     public DataList readDataFiles(String personFile, String songFile) {
         
         DataList dataFile = new DataList();
+        
         //scans person file
+        readPeople(personFile, dataFile);
+        
+        //scans song file
+        readSongs(songFile, dataFile);
+        
+        return dataFile;
+    }
+    
+    /**
+     * Reads the people in the file with the Person data
+     * @param personFile    The name of the file with the Person data
+     * @param dataFile    The DataList where the Songs are being added
+     */
+    private void readPeople(String personFile, DataList dataFile) {
+        
         Scanner fileScan = null;
         try {
             
@@ -39,15 +54,14 @@ public class ListReader {
         }
         
         fileScan.nextLine(); //advances past the first line
-        LinkedList<Person> personList = new LinkedList<Person>();
         
         while (fileScan.hasNextLine())
         {
             String personLine = fileScan.nextLine();
-            String[] personData = personLine.split(",");
-            String major = personData[2];
-            String region = personData[3];
-            String hobby = personData[4];
+            String[] personData = personLine.split(" *, *");
+            MajorEnum major = findMajor(personData[2]);
+            RegionEnum region = findRegion(personData[3]);
+            HobbyEnum hobby = findHobby(personData[4]);
             int numSongs = (personData.length - 5) / 2;
             String[] heard = new String[numSongs];
             String[] liked = new String[numSongs];
@@ -66,11 +80,20 @@ public class ListReader {
                 index ++;
             }
             index = 0;
-            dataFile.addPerson(new Person(major, region, hobby, heard, liked));
+            dataFile.addPerson(new Person(major, hobby, region, heard, liked));
         }
         
-        //scans song file
-        fileScan = null;
+        fileScan.close();
+    }
+    
+    /**
+     * Reads the Songs in the file with all the Song data
+     * @param songFile    The name of the file with the Song data
+     * @param dataFile    The DataList where the Songs are being added
+     */
+    private void readSongs(String songFile, DataList dataFile) {
+        
+        Scanner fileScan = null;
         try {
             
             fileScan = new Scanner(new File(songFile));
@@ -82,24 +105,110 @@ public class ListReader {
         }
         
         fileScan.nextLine();
-        LinkedList<Song> songList = new LinkedList<Song>();
         int index = 0;
         
         while (fileScan.hasNextLine())
         {
             String songLine = fileScan.nextLine();
-            String[] songData = songLine.split(",");
+            String[] songData = songLine.split(" *, *") ;
             String title = songData[0];
             String artist = songData[1];
             int year = Integer.parseInt(songData[2]);
             String genre = songData[3];
             
-            songList.add(new Song(genre, artist, title, year, index));
+            dataFile.addSong(new Song(genre, artist, title, year, index));
             index++;
         }
         
         fileScan.close();
-        return dataFile;
     }
     
+    /**
+     * Method finds the corresponding enum of the input String for the Person's
+     * major
+     * @param major    The String with the Person's major
+     * @return the corresponding enum of the String
+     */
+    private MajorEnum findMajor(String major) {
+        MajorEnum majorEnum = null;
+        switch(major) {
+        
+            case "Computer Science":
+                majorEnum = MajorEnum.COMPSCI;
+                break;
+                
+            case "Math or CMDA":
+                majorEnum = MajorEnum.MATH;
+                break;
+                
+            case "Other Engineering":
+                majorEnum = MajorEnum.ENGINEERING;
+                break;
+                
+            default:
+                majorEnum = MajorEnum.OTHER;
+                break;
+        }
+        return majorEnum;
+    }
+    
+    /**
+     * Method finds the corresponding enum of the input String for the Person's
+     * region
+     * @param region    The String with the Person's region
+     * @return the corresponding enum of the String
+     */
+    private RegionEnum findRegion(String region) {
+        
+        RegionEnum regionEnum = null;
+        switch(region) {
+        
+            case "Southeast":
+                regionEnum = RegionEnum.SOUTHEAST;
+                break;
+                
+            case "Northeast":
+                regionEnum = RegionEnum.NORTHEAST;
+                break;
+                
+            case "United States (other than Southeast or Northwest)":
+                regionEnum = RegionEnum.USOTHER;
+                break;
+                
+            default:
+                regionEnum = RegionEnum.OTHER;
+                break;
+        }
+        return regionEnum;
+    }
+    
+    /**
+     * Method finds the corresponding enum of the input String for the Person's
+     * hobby
+     * @param hobby    The String with the Person's hobby
+     * @return the corresponding enum of the String
+     */
+    private HobbyEnum findHobby(String hobby) {
+        
+        HobbyEnum hobbyEnum = null;
+        switch(hobby) {
+        
+            case "sports":
+                hobbyEnum = HobbyEnum.SPORTS;
+                break;
+                
+            case "music":
+                hobbyEnum = HobbyEnum.MUSIC;
+                break;
+            
+            case "reading":
+                hobbyEnum = HobbyEnum.READING;
+                break;
+            
+            default:
+                hobbyEnum = HobbyEnum.ART;
+                break;
+        }
+        return hobbyEnum;
+    }
 }
