@@ -1,4 +1,4 @@
-package music;
+package prj5;
 
 import java.util.LinkedList; // DELETE IMPORT ONCE LINKEDLIST IS FINISHED
 
