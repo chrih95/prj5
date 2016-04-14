@@ -16,6 +16,12 @@ public class GUIMusicWindow {
     public Button quitButton;
     public Window window;
     public Glyph glyph;
+    public TextShape songTitle;
+    public Shape firstBar;
+    public Shape secondBar;
+    public Shape thirdBar;
+    public Shape fourthBar;
+    public Shape divider;
     
     window.addButton(previousButton, WindowSide.NORTH);
     window.addButton(sortByArtistButton, WindowSide.NORTH);
@@ -28,8 +34,105 @@ public class GUIMusicWindow {
     window.addButton(representRegionButton, WindowSide.SOUTH);
     window.addButton(quitButton, WindowSide.SOUTH);
     
-    public GUIMusicWindow() {
+    public GUIMusicWindow(DataList list) {
+        window = new Window("Project 5");
         
+        previousButton = new Button("<-- Prev");
+        nextButton = new Button("Next -->");
+        sortByArtistButton = new Button("Sort By Artist Name");
+        sortByTitleButton = new Button("Sort By Song Title");
+        sortByYearButton = new Button("Sort By Release Year");
+        sortByGenreButton = new Button("Sort By Genre");
+        representHobbyButton = new Button("Represent Hobby");
+        representMajorButton = new Button("Represent Major");
+        representRegionButton = new Button("Represent Region");
+        quitButton = new Button("Quit");
+        glyph = new Glyph();
+        firstBar = new Shape(160, 80, 150, 15, Color.MAGENTA);
+        secondBar = new Shape(200, 95, 125, 15, Color.BLUE);
+        thirdBar = new Shape(180, 110, 100, 15, Color.ORANGE);
+        fourthBar = new Shape(170, 125, 100, 15, Color.GREEN);
+        divider = new Shape(220, 80, 5, 60, Color.BLACK);
+        
+        window.addButton(previousButton, WindowSide.NORTH);
+        window.addButton(sortByArtistButton, WindowSide.NORTH);
+        window.addButton(sortByTitleButton, WindowSide.NORTH);
+        window.addButton(sortByYearButton, WindowSide.NORTH);
+        window.addButton(sortByGenreButton, WindowSide.NORTH);
+        window.addButton(nextButton, WindowSide.NORTH);
+        
+        window.addButton(representHobbyButton, WindowSide.SOUTH);
+        window.addButton(representMajorButton, WindowSide.SOUTH);
+        window.addButton(representRegionButton, WindowSide.SOUTH);
+        window.addButton(quitButton, WindowSide.SOUTH);
+        makeLegend();
+        window.addShape(glyph.buildGlyph());
+        songTitle = new TextShape(190, 60, "Hello by Adele");
+        songTitle.setBackgroundColor(Color.WHITE);
+        window.addShape(songTitle);
+        window.moveToFront(songTitle);
+        
+        
+        window.addShape(firstBar);
+        window.moveToFront(firstBar);
+        window.addShape(secondBar);
+        window.moveToFront(secondBar);
+        window.addShape(thirdBar);
+        window.moveToFront(thirdBar);
+        window.addShape(fourthBar);
+        window.moveToFront(fourthBar);
+        window.addShape(divider);
+        window.moveToFront(divider);
+
+    }
+    
+    public void makeLegend() {
+        int x = window.getGraphPanelWidth() + 110;
+        int y = window.getGraphPanelHeight() + 110;
+        Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
+        legend.setForegroundColor(Color.BLACK);
+        TextShape legendText = new TextShape(x + 30, y + 5,"Hobby Legend");
+        legendText.setBackgroundColor(Color.WHITE);
+        TextShape firstText = new TextShape(x + 60, y + 30,"Read");
+        TextShape secondText = new TextShape(x + 60, y + 60,"Art");
+        TextShape thirdText = new TextShape(x + 60, y + 90,"Sports");
+        TextShape fourthText = new TextShape(x + 60, y + 120,"Music");
+        TextShape songTitle = new TextShape(x + 50, y + 140,"Song Title");
+        TextShape heardText = new TextShape(x + 20, y + 180,"Heard");
+        TextShape likedText = new TextShape(x + 100, y + 180,"Liked");
+        Shape legendDivider = new Shape(x + 80, y + 160, 5, 60, Color.BLACK);
+        firstText.setBackgroundColor(Color.WHITE);
+        firstText.setForegroundColor(Color.MAGENTA);
+        secondText.setBackgroundColor(Color.WHITE);
+        secondText.setForegroundColor(Color.BLUE);
+        thirdText.setBackgroundColor(Color.WHITE);
+        thirdText.setForegroundColor(Color.ORANGE);
+        fourthText.setBackgroundColor(Color.WHITE);
+        fourthText.setForegroundColor(Color.GREEN);
+        songTitle.setBackgroundColor(Color.WHITE);
+        heardText.setBackgroundColor(Color.WHITE);
+        likedText.setBackgroundColor(Color.WHITE);
+        
+        
+        window.addShape(legend);
+        window.addShape(legendText);
+        window.moveToFront(legendText);
+        window.addShape(firstText);
+        window.moveToFront(firstText);
+        window.addShape(secondText);
+        window.moveToFront(secondText);
+        window.addShape(thirdText);
+        window.moveToFront(thirdText);
+        window.addShape(fourthText);
+        window.moveToFront(fourthText);
+        window.addShape(songTitle);
+        window.moveToFront(songTitle);
+        window.addShape(heardText);
+        window.moveToFront(heardText);
+        window.addShape(legendDivider);
+        window.moveToFront(legendDivider);
+        window.addShape(likedText);
+        window.moveToFront(likedText);
     }
     
     public Window getWindow() {
