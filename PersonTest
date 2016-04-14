@@ -3,8 +3,8 @@ package prj5;
 public class PersonTest extends student.TestCase {
     
     private Person person;
-    private String[] likedTest = {"yes","yes","no","no"};
-    private String[] heardTest = {"yes","yes","no","no"};
+    private String[] likedTest = {"yes", "yes", "no", "no"};
+    private String[] heardTest = {"yes", "yes", "no", "no"};
     
     /**
      * Sets up the test case
@@ -42,22 +42,23 @@ public class PersonTest extends student.TestCase {
      */
     public void testToString() {
         
-        assertEquals("[Major: Computer Science, Hobby: Art, Region: Northeast]"
+        assertEquals("[Major: Computer Science, Hobby: art, Region: Northeast]"
                 , person.toString());
         
         Person person2 = new Person(MajorEnum.MATH, HobbyEnum.SPORTS,
                 RegionEnum.SOUTHEAST, likedTest, heardTest);
-        assertEquals("[Major: Math, Hobby: Sports, Region: Southeast]"
+        assertEquals("[Major: Math or CMDA, Hobby: sports, Region: Southeast]"
                 , person2.toString());
         
         Person person3 = new Person(MajorEnum.ENGINEERING, HobbyEnum.MUSIC,
                 RegionEnum.USOTHER, likedTest, heardTest);
-        assertEquals("[Major: Other Engineering, Hobby: Music, Region: Other US"
-                + " region]", person3.toString());
+        assertEquals("[Major: Other Engineering, Hobby: music, Region: United"
+                + " States (other than Southeast or Northwest)]"
+                , person3.toString());
         
         Person person4 = new Person(MajorEnum.OTHER, HobbyEnum.ART,
                 RegionEnum.OTHER, likedTest, heardTest);
-        assertEquals("[Major: Other Non-Engineering, Hobby: Art, Region: "
-                + "Outside of the US]", person4.toString());
+        assertEquals("[Major: Other, Hobby: art, Region: "
+                + "Outside of United States]", person4.toString());
     }
 }
