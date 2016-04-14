@@ -1,45 +1,93 @@
+package prj5;
+
 public class Song {
-    
-    public String genre;
-    public String artist;
-    public String title;
-    public int year;
-    public int index;
-    
-    public Song() {
-        
-    }
-    
-    public Song(String genre, String artist, String title, int year, int index) {
+
+    private String genre;
+    private String artist;
+    private String title;
+    private int year;
+    private int index;
+
+
+    /**
+     * Creates a new Song with a genre, artist, region, and an index to find
+     * the song.
+     * @param genre     The genre of the song
+     * @param artist    The artist of the song
+     * @param title     The name of the song
+     * @param year      The year the song came out
+     * @param index     The index used to find the Song
+     */
+    public Song(String genre, String artist, String title, int year,
+            int index) {
         this.genre = genre;
         this.artist = artist;
         this.title = title;
         this.year = year;
         this.index = index;
     }
-    
+
+    /**
+     * Method returns the genre of the song
+     * @return the genre of the song
+     */
     public String getGenre() {
+        
         return genre;
     }
-    
+
+    /**
+     * Method returns the artist of the song
+     * @return the artist of the song
+     */
     public String getArtist() {
+        
         return artist;
     }
-    
+
+    /**
+     * Method returns the name of the song
+     * @return the name of the song
+     */
     public String getTitle() {
+        
         return title;
     }
-    
+
+    /**
+     * Method returns the year the song came out
+     * @return the song's release year
+     */
     public int getYear() {
         return year;
     }
-    
+
+    /**
+     * Method returns the index used to find the song
+     * @return the index of teh song
+     */
     public int getIndex() {
         return index;
     }
-    
+
+    /**
+     * Method returns the String representation of the Song
+     * @return the String representation of the Song
+     */
+    @Override
     public String toString() {
-    
+
+        StringBuilder songString = new StringBuilder("[Genre: ");
+        songString.append(this.getGenre());
+        songString.append(", Artist: ");
+        songString.append(this.getArtist());
+        songString.append(", Title: ");
+        songString.append(this.getTitle());
+        songString.append(", Year: ");
+        songString.append(this.getYear());
+        songString.append(", Index: ");
+        songString.append(this.getIndex());
+        songString.append("]");
+        return songString.toString();
     }
- 
 }
