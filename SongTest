@@ -1,5 +1,8 @@
 package prj5;
 
+/**
+* A test class that tests the methods in the Song class
+*/
 public class SongTest extends student.TestCase {
     
     private Song song;
