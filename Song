@@ -1,10 +1,5 @@
 package prj5;
 
-/**
-* A class representing a song with genre, artist, title, year, and index 
-* parameters
-* @verson (4.16.16)
-*/
 public class Song {
 
     private String genre;
@@ -12,10 +7,12 @@ public class Song {
     private String title;
     private int year;
     private int index;
+    private int[] heard;
+    private int[] liked;
 
 
     /**
-     * Creates a new Song with a genre, artist, title, year, and an index to find
+     * Creates a new Song with a genre, artist, region, and an index to find
      * the song.
      * @param genre     The genre of the song
      * @param artist    The artist of the song
@@ -30,6 +27,8 @@ public class Song {
         this.title = title;
         this.year = year;
         this.index = index;
+        heard = new int[4];
+        liked = new int[4];
     }
 
     /**
@@ -69,7 +68,7 @@ public class Song {
 
     /**
      * Method returns the index used to find the song
-     * @return the index of teh song
+     * @return the index of the song
      */
     public int getIndex() {
         return index;
@@ -82,17 +81,321 @@ public class Song {
     @Override
     public String toString() {
 
-        StringBuilder songString = new StringBuilder("[Genre: ");
-        songString.append(this.getGenre());
-        songString.append(", Artist: ");
-        songString.append(this.getArtist());
-        songString.append(", Title: ");
-        songString.append(this.getTitle());
-        songString.append(", Year: ");
+        StringBuilder songString = new StringBuilder("Song Title: ");
+        songString.append(this.getTitle() + "\n");
+        songString.append("Song Artist: ");
+        songString.append(this.getArtist() + "\n");
+        songString.append("Song Genre: ");
+        songString.append(this.getGenre() + "\n");
+        songString.append("Song Year: ");
         songString.append(this.getYear());
-        songString.append(", Index: ");
-        songString.append(this.getIndex());
-        songString.append("]");
         return songString.toString();
+    }
+    
+    public String representHobby() {
+        
+        int[] heardSong = {0,0,0,0};
+        LinkedList<Person> personList = DataList.getPersonList();
+        int numReading = 0;
+        int numArt = 0;
+        int numSports = 0;
+        int numMusic = 0;
+        
+        for (int i = 0; i < personList.getLength(); i++) {
+            
+            Person person = personList.getEntry(i);
+            String[] heardPerson = personList.getEntry(i).getHeard();
+            String heardResponse = heardPerson[index];
+            
+            
+            switch(person.getHobby()) {
+                
+                case READING:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[0]++;
+                    }
+                    numReading++;
+                    break;
+                case ART:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[1]++;
+                    }
+                    numArt++;
+                    break;
+                case SPORTS:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[2]++;
+                    }
+                    numSports++;
+                    break;
+                default:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[3]++;
+                    }
+                    numMusic++;
+                    break;
+            }
+        }
+        if (numReading != 0) {
+            
+            heardSong[0] = (heardSong[0] * 100) / numReading;
+        }
+        else {
+            heardSong[0] = 0;
+        }
+        if (numArt != 0) {
+            heardSong[1] = (heardSong[1] * 100) / numArt;
+        }
+        else {
+            
+            heardSong[1] = 0;
+        }
+        if (numSports != 0) {
+            
+            heardSong[2] = (heardSong[2] * 100) / numSports;
+        }
+        else {
+            heardSong[2] = 0;
+        }
+        if (numMusic != 0) {
+            
+            heardSong[3] = (heardSong[3] * 100) / numMusic;
+        }
+        else {
+            heardSong[3] = 0;
+        }
+        heard = heardSong;
+        
+        int[] likedSong = {0,0,0,0};
+        
+        for (int i = 0; i < personList.getLength(); i++) {
+            
+            Person person = personList.getEntry(i);
+            String[] likedPerson = personList.getEntry(i).getLiked();
+            String likedResponse = likedPerson[index];
+            
+            if (likedResponse.equals("Yes")) {
+                
+                switch(person.getHobby()) {
+                
+                    case READING:
+                        likedSong[0]++;
+                        break;
+                    case ART:
+                        likedSong[1]++;
+                        break;
+                    case SPORTS:
+                        likedSong[2]++;
+                        break;
+                    default:
+                        likedSong[3]++;
+                        break;
+                }
+            }
+        }
+        if (numReading != 0) {
+            
+            likedSong[0] = (likedSong[0] * 100) / numReading;
+        }
+        else {
+            likedSong[0] = 0;
+        }
+        if (numArt != 0) {
+            likedSong[1] = (likedSong[1] * 100) / numArt;
+        }
+        else {
+            
+            likedSong[1] = 0;
+        }
+        if (numSports != 0) {
+            
+            likedSong[2] = (likedSong[2] * 100) / numSports;
+        }
+        else {
+            likedSong[2] = 0;
+        }
+        if (numMusic != 0) {
+            
+            likedSong[3] = (likedSong[3] * 100) / numMusic;
+        }
+        else {
+            likedSong[3] = 0;
+        }
+        liked = likedSong;
+        
+        StringBuilder hobbyString = new StringBuilder("Heard\n");
+        hobbyString.append("reading:" + heardSong[0] + " art:" + heardSong[1] +
+                " sports:" + heardSong[2] + " music:" + heardSong[3] + "\n");
+        hobbyString.append("Likes:\n");
+        hobbyString.append("reading:" + likedSong[0] + " art:" + likedSong[1] +
+                " sports:" + likedSong[2] + " music:" + likedSong[3] + "\n");
+        return hobbyString.toString();
+    }
+    
+    public void representRegion() {
+        
+        int[] heardSong = {0,0,0,0};
+        LinkedList<Person> personList = DataList.getPersonList();
+        int numNortheast = 0;
+        int numSoutheast = 0;
+        int numUSOther = 0;
+        int numOther = 0;
+        
+        for (int i = 0; i < personList.getLength(); i++) {
+            
+            Person person = personList.getEntry(i);
+            String[] heardPerson = personList.getEntry(i).getHeard();
+            String heardResponse = heardPerson[index];
+            
+            
+            switch(person.getRegion()) {
+                
+                case NORTHEAST:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[0]++;
+                    }
+                    numNortheast++;
+                    break;
+                case SOUTHEAST:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[1]++;
+                    }
+                    numSoutheast++;
+                    break;
+                case USOTHER:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[2]++;
+                    }
+                    numUSOther++;
+                    break;
+                default:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[3]++;
+                    }
+                    numOther++;
+                    break;
+            }
+        }
+        heardSong[0] = (heardSong[0] * 100) / numNortheast;
+        heardSong[1] = (heardSong[1] * 100) / numSoutheast;
+        heardSong[2] = (heardSong[2] * 100) / numUSOther;
+        heardSong[3] = (heardSong[3] * 100) / numOther;
+        heard = heardSong;
+        
+        int[] likedSong = {0,0,0,0};
+        
+        for (int i = 0; i < personList.getLength() - 1; i++) {
+            
+            Person person = personList.getEntry(i);
+            String[] likedPerson = personList.getEntry(i).getLiked();
+            String likedResponse = likedPerson[index];
+            
+            if (likedResponse.equals("Yes")) {
+                
+                switch(person.getRegion()) {
+                
+                    case NORTHEAST:
+                        likedSong[0]++;
+                        break;
+                    case SOUTHEAST:
+                        likedSong[1]++;
+                        break;
+                    case USOTHER:
+                        likedSong[2]++;
+                        break;
+                    default:
+                        likedSong[3]++;
+                        break;
+                }
+            }
+        }
+        likedSong[0] = (likedSong[0] * 100) / numNortheast;
+        likedSong[1] = (likedSong[1] * 100) / numSoutheast;
+        likedSong[2] = (likedSong[2] * 100) / numUSOther;
+        likedSong[3] = (likedSong[3] * 100) / numOther;
+        liked = likedSong;
+    }
+    public void representMajor() {
+    
+        int[] heardSong = {0,0,0,0};
+        LinkedList<Person> personList = DataList.getPersonList();
+        int numCompSci = 0;
+        int numMath = 0;
+        int numEngineering = 0;
+        int numOther = 0;
+        
+        for (int i = 0; i < personList.getLength() - 1; i++) {
+            
+            Person person = personList.getEntry(i);
+            String[] heardPerson = personList.getEntry(i).getHeard();
+            String heardResponse = heardPerson[index];
+            
+            
+            switch(person.getMajor()) {
+                
+                case COMPSCI:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[0]++;
+                    }
+                    numCompSci++;
+                    break;
+                case MATH:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[1]++;
+                    }
+                    numMath++;
+                    break;
+                case ENGINEERING:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[2]++;
+                    }
+                    numEngineering++;
+                    break;
+                default:
+                    if (heardResponse.equals("Yes")) {
+                        heardSong[3]++;
+                    }
+                    numOther++;
+                    break;
+            }
+        }
+        heardSong[0] = (heardSong[0] * 100) / numCompSci;
+        heardSong[1] = (heardSong[1] * 100) / numMath;
+        heardSong[2] = (heardSong[2] * 100) / numEngineering;
+        heardSong[3] = (heardSong[3] * 100) / numOther;
+        heard = heardSong;
+        
+        int[] likedSong = {0,0,0,0};
+        
+        for (int i = 0; i < personList.getLength() - 1; i++) {
+            
+            Person person = personList.getEntry(i);
+            String[] likedPerson = personList.getEntry(i).getLiked();
+            String likedResponse = likedPerson[index];
+            
+            if (likedResponse.equals("Yes")) {
+                
+                switch(person.getMajor()) {
+                
+                    case COMPSCI:
+                        likedSong[0]++;
+                        break;
+                    case MATH:
+                        likedSong[1]++;
+                        break;
+                    case ENGINEERING:
+                        likedSong[2]++;
+                        break;
+                    default:
+                        likedSong[3]++;
+                        break;
+                }
+            }
+        }
+        likedSong[0] = (likedSong[0] * 100) / numCompSci;
+        likedSong[1] = (likedSong[1] * 100) / numMath;
+        likedSong[2] = (likedSong[2] * 100) / numEngineering;
+        likedSong[3] = (likedSong[3] * 100) / numOther;
+        liked = likedSong;
     }
 }
