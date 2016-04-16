@@ -187,8 +187,11 @@ public class GUIMusicWindow {
     }
     
     /**
-     * 
-     * @param button
+     * Changes the bars of each glyph on the screen 
+     * according to the which button (hobby, major,
+     * or region) was clicked.
+     * @param button The representHobbyButton, representMajorButton,
+     * or representRegionButton.
      */
     public void clickedRepresentation(Button button) {
         if (button.equals(representHobbyButton)) {
@@ -205,8 +208,9 @@ public class GUIMusicWindow {
     }
     
     /**
-     * 
-     * @param button
+     * Navigates between pages of songs whenever the
+     * next or prevous buttons are clicked.
+     * @param button The next or previous button
      */
     public void clickedMove(Button button) {
         if (button.equals(nextButton)) {
@@ -219,8 +223,8 @@ public class GUIMusicWindow {
     }
     
     /**
-     * 
-     * @param button
+     * Quits the program when the quit button is clicked.
+     * @param button The quit button
      */
     public void clickedQuit(Button button) {  
         System.exit(0);
