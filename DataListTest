@@ -2,12 +2,21 @@ package prj5;
 
 import student.TestCase;
 
+/**
+ * Tests the methods in the DataList class
+ * @author alicechoi
+ *
+ */
 public class DataListTest extends TestCase {
 
     private DataList dataList;
     private Person newPerson;
     private Song newSong;
 
+    /**
+     * Instantiates the data list, the string arrays representing
+     * the heards and likes, and a new person and song.
+     */
     public void setUp() {
         dataList = new DataList();
         String[] heard = {"yes"};
@@ -17,20 +26,35 @@ public class DataListTest extends TestCase {
         newSong = new Song("genre", "artist", "title", 2016, 1);
     }
 
+    /**
+     * Tests the getPersonList() method
+     */
     public void testGetPersonList() {
         assertTrue(dataList.getPersonList().isEmpty());
         dataList.addPerson(newPerson);
         assertFalse(dataList.getPersonList().isEmpty());
     }
+    
+    /**
+     * Tests the getSongList() method
+     */
     public void testGetSongList() {
         assertTrue(dataList.getSongList().isEmpty());
         dataList.addSong(newSong);
         assertFalse(dataList.getSongList().isEmpty());
     }
+    
+    /**
+     * Tests the addSong() method
+     */
     public void testAddSong() {
         dataList.addSong(newSong);
         assertTrue(dataList.getSongList().contains(newSong));
     }
+    
+    /**
+     * Tests the addPerson() method
+     */
     public void testAddPerson() {
         String[] heard = {"yes"};
         String[] liked = {"no"};
@@ -41,3 +65,4 @@ public class DataListTest extends TestCase {
     }
 
 }
+
