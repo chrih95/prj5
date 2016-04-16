@@ -5,7 +5,7 @@ package prj5;
  * @author Christian Hawkes
  *
  */
-public class CompareGenre {
+public class CompareGenre implements Comparator<Object> {
 
     /**
      * 
