@@ -12,21 +12,33 @@ public class CompareTitleTest extends student.TestCase {
     public CompareTitle comparer;
     
     /**
+     *A String representing the genre of the song hello 
+     */
+    public String hello;
+    
+    /**
+     * A String representing the genre of the song yeah
+     */
+    public String yeah;
+    
+    /**
      *A new Song 
      */
-    public Song hello;
+    public Song songHello;
     
     /**
      * A new Song
      */
-    public Song yeah;
+    public Song songYeah;
     
     /**
      * Instantiates the comparer and the two songs
      */
     public void setUp() {
-        hello = new Song("Pop", "Adele", "Hello", 2016, 23);
-        yeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+        songHello = new Song("Pop", "Adele", "Hello", 2016, 23);
+        songYeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+        hello = songHello.getTitle();
+        yeah = songYeah.getTitle();
         comparer = new CompareTitle();
     }
     
