@@ -3,17 +3,17 @@ package prj5;
 import java.util.Comparator;
 
 /**
- * 
- * @author 
+ * Compares songs based on the artist name
+ * @author Christian Hawkes
  *
  */
 public class CompareArtist implements Comparator<Object> {
 
     /**
-     * 
-     * @param obj1
-     * @param obj2
-     * @return
+     * Returns an int less than, greater than, or equal to 0.
+     * @param obj1 The first song
+     * @param obj2 The second song
+     * @return An int less than, greater than, or equal to 0.
      */
     @Override
     public int compare(Object obj1, Object obj2) {
