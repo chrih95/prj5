@@ -3,8 +3,14 @@ package prj5;
 import CS2114.SquareShape;
 import java.awt.Color;
 
+/**
+* Creates a new glyph.
+*/
 public SquareShape glyph;
 
+    /**
+    * Creates and returns a new square shape.
+    */
     public SquareShape buildGlyph() {
         glyph = new SquareShape(150, 50, 150, Color.WHITE);
         return glyph;
