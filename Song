@@ -1,5 +1,10 @@
 package prj5;
 
+/**
+* A class representing a song with genre, artist, title, year, and index 
+* parameters
+* @verson (4.16.16)
+*/
 public class Song {
 
     private String genre;
@@ -10,7 +15,7 @@ public class Song {
 
 
     /**
-     * Creates a new Song with a genre, artist, region, and an index to find
+     * Creates a new Song with a genre, artist, title, year, and an index to find
      * the song.
      * @param genre     The genre of the song
      * @param artist    The artist of the song
