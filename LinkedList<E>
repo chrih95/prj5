@@ -3,6 +3,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import list.ListInterface;
+
 /**
  * This class implements a linked list data structure
  * @author Owner
@@ -75,6 +76,7 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         return false;
     }
+    
     /**
     * Returns the data in the node at the given position
     * @param position The position of the node to be returned
@@ -201,7 +203,7 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
     }
 //----------------------------------------------------------------------------
     /**
-     * 
+     * The inner Node class
      * @author <chalice>
      *
      * @param <E> the type of element
@@ -225,6 +227,10 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
             data = d;
         }
 
+        /**
+        * Sets the data of the node to the given parameter
+        * @param replacementEntry The new data
+        */
         public void setData(E replacementEntry) {
             data = replacementEntry;
         }
@@ -268,12 +274,26 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
 
         private int index;
 
+        /**
+        * Sets the index to 0
+        */
         public LinkedListIterator() {
             index = 0;
         }
+        
+        /**
+        * Returns true if the the current node has a next
+        * @return True if the node has a next
+        */
         public boolean hasNext() {
             return index < getLength();
         }
+        
+        /**
+        * Returns the current data and increments to the next node
+        * @throws NoSuchElementExcpeption if the node doesn't have a next
+        * @return The current data
+        */
         public E next() {
             if (hasNext()) {
                 E nextEntry = getEntry(index);
