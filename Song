@@ -1,5 +1,12 @@
 package prj5;
 
+/**
+* A class that represents a song with genre, artist, title, year, index,
+* an array of heard responses and an array of liked responses as 
+* parameters.  Also includes functionality to represent the list of songs
+* by hobby, region, or major.
+* @version (4.16.16)
+*/
 public class Song {
 
     private String genre;
@@ -92,6 +99,10 @@ public class Song {
         return songString.toString();
     }
     
+    /**
+    * Represents the student survey data by hobby.
+    * @return A string representation of the data represented by hobby
+    */
     public String representHobby() {
         
         int[] heardSong = {0,0,0,0};
@@ -232,6 +243,10 @@ public class Song {
         return hobbyString.toString();
     }
     
+    /**
+    * Represents the student data by region
+    * @return A string of the student data represented by reigon
+    */
     public void representRegion() {
         
         int[] heardSong = {0,0,0,0};
@@ -315,6 +330,12 @@ public class Song {
         likedSong[3] = (likedSong[3] * 100) / numOther;
         liked = likedSong;
     }
+    
+    /**
+    * Represents the student data by major
+    * @return A string representation of the student data 
+    * represented by major
+    */
     public void representMajor() {
     
         int[] heardSong = {0,0,0,0};
