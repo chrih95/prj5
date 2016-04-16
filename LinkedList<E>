@@ -75,6 +75,11 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         return false;
     }
+    /**
+    * Returns the data in the node at the given position
+    * @param position The position of the node to be returned
+    * @return The data at the given position
+    */
     @Override
     public E getEntry(int position) {
         Node<E> currNode = firstNode;
@@ -86,14 +91,30 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         return currNode.getData();
     }
+    
+    /**
+    * Returns the length of the list
+    * @return The length of the list
+    */
     @Override
     public int getLength() {
         return numberOfEntries;
     }
+    
+    /**
+    * Returns true if the list is empty
+    * @return true if the list is empty
+    */ 
     @Override
     public boolean isEmpty() {
         return firstNode == null && numberOfEntries == 0;
     }
+    
+    /**
+    * Removes and returns the data in the node at the given position
+    * @param position The position of the node to be removed
+    * @return the data of the removed node
+    */
     @Override
     public E remove(int position) {
         Node<E> currNode = firstNode;
@@ -108,6 +129,14 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         currNode.setNextNode(currNode.getNextNode().getNextNode());
         return removedEntry;
     }
+    
+    /**
+    * Replaces and returns the data at the given position with
+    * the data given
+    * @param position The position to swap
+    * @param replacementEntry The data to swap in
+    * @return The data that was replaced
+    */
     @Override
     public E replace(int position, E replacementEntry) {
 
@@ -124,6 +153,11 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         currNode.setData(replacementEntry);
         return replacedEntry;
     }
+    
+    /**
+    * Returns an arrary of the elements in the list
+    * @return An aray 
+    */
     @Override
     public Object[] toArray() {
         Object[] array = new Object[numberOfEntries];
@@ -134,12 +168,23 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         return array;
     }
+    
+    /**
+    * Calls the swap method to sort the elements in the list.
+    * @param comparator Compares the elements at j and j-1
+    */
     public void insertionSort(Comparator<? super Object> comparator) {
 
         for (int i = 1; i < numberOfEntries; i++) // Insert i'th record
             for (int j = i; (j > 0) && (comparator.compare(getEntry(j), getEntry(j-1)) < 0); j--)
               swap(j, j-1);
     }
+    
+    /**
+    * A helper method to swap the elements at the given entries
+    * @param j The first position
+    * @param i The second position
+    */
     @SuppressWarnings("unchecked")
     private void swap(int j, int i) {
         Object aAtIndexJ = getEntry(j);
@@ -147,6 +192,10 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         replace(i, (E) aAtIndexJ);
     }
 
+    /**
+    * Creates a new iterator
+    * @return a new linked list iterator
+    */
     public Iterator<E> iterator() {
         return new LinkedListIterator();
     }
