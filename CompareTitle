@@ -1,17 +1,16 @@
 package prj5;
 
 /**
- * 
- * @author 
- *
+ * Compares the titles of songs.
+ * @author Christian Hawkes
  */
 public class CompareTitle implements Comparator<Object> {
     
     /**
-     * 
-     * @param obj1
-     * @param obj2
-     * @return
+     * Returns an int greater than, less than, or equal to 0.
+     * @param obj1 The first song
+     * @param obj2 The second song
+     * @return An int greater than, less than, or equal to 0.
      */
     public int compare(Object obj1, Object obj2) {
         if (obj1.getClass().equals(obj2.getClass())  && obj1.getClass().equals(Song.class)) {
