@@ -14,19 +14,31 @@ public class CompareGenreTest extends student.TestCase {
     /**
      *A new Song 
      */
-    public Song hello;
+    public String hello;
     
     /**
      * A new Song
      */
-    public Song yeah;
+    public String yeah;
+    
+    /**
+     *A new Song 
+     */
+    public Song songHello;
+    
+    /**
+     * A new Song
+     */
+    public Song songYeah;
     
     /**
      * Instantiates the comparer and the two songs
      */
     public void setUp() {
-        hello = new Song("Pop", "Adele", "Hello", 2016, 23);
-        yeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+        songHello = new Song("Pop", "Adele", "Hello", 2016, 23);
+        songYeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+        hello = songHello.getGenre();
+        yeah = songYeah.getGenre();
         comparer = new CompareGenre();
     }
     
