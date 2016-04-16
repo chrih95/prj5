@@ -3,6 +3,7 @@ package prj5;
 /**
 * A class that represents a person with a major, hobby, region and 
 * an array of their heard responses and an array of their like responses.
+* @version (4.16.16)
 */
 public class Person {
 
