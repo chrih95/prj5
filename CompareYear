@@ -1,5 +1,13 @@
 package prj5;
 
 public int compare(Object obj1, Object obj2) {
+    if (obj1.getClass().equals(obj2.getClass()) 
+        && obj1.getClass().equals(Song.class)) {
+    int year1 = (Song) obj1.getYear();
+    int year2 = (Song) obj2.getYear();
+    return year1 - year2;
+    }
+    
+    return 0;
 
 }
