@@ -1,8 +1,5 @@
 package prj5;
 
-import java.util.Comparator;
-
-
 /**
  * 
  * @author Christian Hawkes
@@ -161,18 +158,17 @@ public class LinkedListTest extends student.TestCase {
      * Tests the insertionSort() method
      */
     public void testInsertionSort() {
-        list.add("bob");
-        list.add("tom");
-        list.add("lilly");
-        
-        assertEquals("lilly", list.getEntry(0));
-        assertEquals("tom", list.getEntry(1));
-        assertEquals("bob", list.getEntry(2));
-        
         CompareArtist comparer = new CompareArtist();
-        list.insertionSort(comparer);
-        assertEquals("bob", list.getEntry(0));
-        assertEquals("lilly", list.getEntry(1));
-        assertEquals("tom", list.getEntry(2));
+        LinkedList<Song> songList = new LinkedList<Song>();
+        Song songHello = new Song("Pop", "Adele", "Hello", 2016, 23);
+        Song songYeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+        songList.add(songHello);
+        songList.add(songYeah);
+        assertEquals(songYeah, songList.getEntry(0));
+        assertEquals(songHello, songList.getEntry(1));
+        
+        songList.insertionSort(comparer);
+        assertEquals(songHello, songList.getEntry(0));
+        assertEquals(songYeah, songList.getEntry(1));
     }
 }
