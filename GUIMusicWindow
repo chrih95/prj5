@@ -1,7 +1,19 @@
+package prj5;
+
+import java.awt.Color;
+
 
 import CS2114.Button;
+import CS2114.Shape;
 import CS2114.Window;
+import CS2114.WindowSide;
+import CS2114.TextShape;
 
+/**
+ * 
+ * @author Christian Hawkes
+ *
+ */
 public class GUIMusicWindow {
     
     public Button previousButton;
@@ -15,6 +27,7 @@ public class GUIMusicWindow {
     public Button representRegionButton;
     public Button quitButton;
     public Window window;
+    
     public Glyph glyph;
     public TextShape songTitle;
     public Shape firstBar;
@@ -23,17 +36,10 @@ public class GUIMusicWindow {
     public Shape fourthBar;
     public Shape divider;
     
-    window.addButton(previousButton, WindowSide.NORTH);
-    window.addButton(sortByArtistButton, WindowSide.NORTH);
-    window.addButton(sortByTitleButton, WindowSide.NORTH);
-    window.addButton(sortByYearButton, WindowSide.NORTH);
-    window.addButton(sortByGenreButton, WindowSide.NORTH);
-    window.addButton(nextButton, WindowSide.NORTH);
-    window.addButton(representHobbyButton, WindowSide.SOUTH);
-    window.addButton(representMajorButton, WindowSide.SOUTH);
-    window.addButton(representRegionButton, WindowSide.SOUTH);
-    window.addButton(quitButton, WindowSide.SOUTH);
-    
+    /**
+     * 
+     * @param list
+     */
     public GUIMusicWindow(DataList list) {
         window = new Window("Project 5");
         
@@ -60,6 +66,7 @@ public class GUIMusicWindow {
         window.addButton(sortByYearButton, WindowSide.NORTH);
         window.addButton(sortByGenreButton, WindowSide.NORTH);
         window.addButton(nextButton, WindowSide.NORTH);
+        previousButton.disable();
         
         window.addButton(representHobbyButton, WindowSide.SOUTH);
         window.addButton(representMajorButton, WindowSide.SOUTH);
@@ -83,9 +90,31 @@ public class GUIMusicWindow {
         window.moveToFront(fourthBar);
         window.addShape(divider);
         window.moveToFront(divider);
+        
+        quitButton.onClick(this, "clickedQuit");
+        previousButton.onClick(this, "clickedMove");
+        nextButton.onClick(this, "clickedMove");
+        sortByArtistButton.onClick(this, "clickedCategory");
+        sortByTitleButton.onClick(this, "clickedCategory");
+        sortByYearButton.onClick(this, "clickedCategory");
+        sortByGenreButton.onClick(this, "clickedCategory");
+        representHobbyButton.onClick(this, "clickedRepresentation");
+        representMajorButton.onClick(this, "clickedRepresentation");
+        representRegionButton.onClick(this, "clickedRepresentation");
 
     }
     
+    /**
+     * 
+     * @return
+     */
+    public Window getWindow() {
+        return window;
+    }
+    
+    /**
+     * 
+     */
     public void makeLegend() {
         int x = window.getGraphPanelWidth() + 110;
         int y = window.getGraphPanelHeight() + 110;
@@ -135,25 +164,65 @@ public class GUIMusicWindow {
         window.moveToFront(likedText);
     }
     
-    public Window getWindow() {
-        return window;
-    }
-    
+    /**
+     * 
+     * @param button
+     */
     public void clickedCategory(Button button) {
+        if (button.equals(sortByArtistButton)) {
+            
+        }
         
+        else if (button.equals(sortByGenreButton)) {
+            
+        }
+        
+        else if (button.equals(sortByTitleButton)) {
+            
+        }
+        
+        else if (button.equals(sortByYearButton)) {
+            
+        }
     }
     
+    /**
+     * 
+     * @param button
+     */
     public void clickedRepresentation(Button button) {
+        if (button.equals(representHobbyButton)) {
+            
+        }
         
+        else if (button.equals(representMajorButton)) {
+            
+        }
+        
+        else if (button.equals(representRegionButton)) {
+            
+        }
     }
     
+    /**
+     * 
+     * @param button
+     */
     public void clickedMove(Button button) {
+        if (button.equals(nextButton)) {
+            previousButton.enable();
+        }
         
+        else if (button.equals(previousButton)) {
+            
+        }
     }
     
-    public void clickedQuit(Button button) {
-        
+    /**
+     * 
+     * @param button
+     */
+    public void clickedQuit(Button button) {  
+        System.exit(0);
     }
-    
-
 }
