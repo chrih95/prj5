@@ -5,6 +5,7 @@ import java.awt.Color;
 
 /**
 * Creates a new glyph.
+* @author Christian Hawkes
 */
 public SquareShape glyph;
 
