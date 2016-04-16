@@ -1,5 +1,12 @@
 package prj5;
 
+/**
+* Creates a list of songs and a list of people
+* and uses the linked list insertion sort functionality
+* to to sort the songs based on title, genre, artist,
+* and year.
+* @version (4.16.16)
+*/
 public class DataList {
 
     
