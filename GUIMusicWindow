@@ -16,25 +16,29 @@ import CS2114.TextShape;
  */
 public class GUIMusicWindow {
     
-    public Button previousButton;
-    public Button nextButton;
-    public Button sortByArtistButton;
-    public Button sortByTitleButton;
-    public Button sortByYearButton;
-    public Button sortByGenreButton;
-    public Button representHobbyButton;
-    public Button representMajorButton;
-    public Button representRegionButton;
-    public Button quitButton;
-    public Window window;
-    
-    public Glyph glyph;
-    public TextShape songTitle;
-    public Shape firstBar;
-    public Shape secondBar;
-    public Shape thirdBar;
-    public Shape fourthBar;
-    public Shape divider;
+    private Button previousButton;
+    private Button nextButton;
+    private Button sortByArtistButton;
+    private Button sortByTitleButton;
+    private Button sortByYearButton;
+    private Button sortByGenreButton;
+    private Button representHobbyButton;
+    private Button representMajorButton;
+    private Button representRegionButton;
+    private Button quitButton;
+    private Window window;
+    private DataList list;
+    private CompareArtist artistCompare;
+    private CompareGenre genreCompare;
+    private CompareTitle titleCompare;
+    private CompareYear yearCompare;
+    private Glyph glyph;
+    private TextShape songTitle;
+    private Shape firstBar;
+    private Shape secondBar;
+    private Shape thirdBar;
+    private Shape fourthBar;
+    private Shape divider;
     
     /**
      * Instantiates all the buttons, builds the glyphs, 
@@ -60,6 +64,11 @@ public class GUIMusicWindow {
         thirdBar = new Shape(180, 110, 100, 15, Color.ORANGE);
         fourthBar = new Shape(170, 125, 100, 15, Color.GREEN);
         divider = new Shape(220, 80, 5, 60, Color.BLACK);
+        this.list = list;
+        artistCompare = new CompareArtist();
+        genreCompare = new CompareGenre();
+        titleCompare = new CompareTitle();
+        yearCompare = new CompareYear();
         
         window.addButton(previousButton, WindowSide.NORTH);
         window.addButton(sortByArtistButton, WindowSide.NORTH);
