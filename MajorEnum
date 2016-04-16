@@ -1,5 +1,9 @@
 package prj5;
 
+/**
+* An Enumeration with COMPSCI, MATH, ENGINEERING, and OTHER
+* representing the major of each person.
+*/
 public enum MajorEnum {
     COMPSCI, MATH, ENGINEERING, OTHER;
 
