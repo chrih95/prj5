@@ -1,5 +1,30 @@
 package prj5;
 
-public int compare(Object obj1, Object obj2) {
+import java.util.Comparator;
 
+/**
+ * 
+ * @author 
+ *
+ */
+public class CompareGenre implements Comparator<Object> {
+
+    /**
+     * 
+     * @param obj1
+     * @param obj2
+     * @return
+     */
+    @Override
+    public int compare(Object obj1, Object obj2) {
+        if (obj1.getClass().equals(obj2.getClass())
+                && obj1.getClass().equals(Song.class)) {
+            String artist1 = ((Song) obj1).getArtist();
+            String artist2 = ((Song) obj2).getArtist();
+
+            return artist1.compareTo(artist2);
+        }
+
+        return 0;
+    }
 }
