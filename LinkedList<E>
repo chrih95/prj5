@@ -1,289 +1,218 @@
-package prj5;
-
 import java.util.Comparator;//should take this out
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import list.ListInterface;
 
+import list.ListInterface;
+/**
+ * This class implements a linked list data structure
+ * @author Owner
+ *
+ * @param <E>
+ */
 public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
 
     private Node<E> firstNode;
-
     private int numberOfEntries;
 
     public LinkedList() {
-
         firstNode = null;
         numberOfEntries = 0;
     }
 
     @Override
-
     public void add(E newEntry) {
-
         Node<E> newNode = new Node<E>(newEntry);
-
         if (firstNode == null) {
-
             firstNode = newNode;
         }
-
         else {
-
             newNode.setNextNode(firstNode);
-
             firstNode = newNode;
-
         }
-
         numberOfEntries++;
-
     }
-
     @Override
-
     public void add(int arg0, E arg1) {
-
         // Why do we need this
-
     }
-
     @Override
     public void clear() {
-
         firstNode = null;
         numberOfEntries = 0;
     }
-
     @Override
-
     public boolean contains(E findEntry) {
-
         Iterator<E> iterator = this.iterator();
-
         if (firstNode.getData().equals(findEntry)) {
-
             return true;
         }
-
         while (iterator.hasNext()) {
-
             if (iterator.next().equals(findEntry)) {
-
                 return true;
             }
         }
-
         return false;
     }
-
     @Override
-
     public E getEntry(int position) {
-
         Node<E> currNode = firstNode;
-
         if (position == 0) {
-
             return firstNode.getData();
         }
         for (int i = 0; i < position; i++) {
-
             currNode = currNode.getNextNode();
         }
         return currNode.getData();
     }
-
     @Override
     public int getLength() {
-
         return numberOfEntries;
     }
-
     @Override
-
     public boolean isEmpty() {
-
         return firstNode == null && numberOfEntries == 0;
     }
-
     @Override
-
     public E remove(int position) {
-
         Node<E> currNode = firstNode;
-
         if (position == 0) {
-
             firstNode = firstNode.getNextNode();
+            numberOfEntries = 0;
         }
-
         for (int i = 0; i < position - 1; i++) {
-
             currNode = currNode.getNextNode();
         }
-
         E removedEntry = currNode.getNextNode().getData();
         currNode.setNextNode(currNode.getNextNode().getNextNode());
         return removedEntry;
     }
-
     @Override
-
     public E replace(int position, E replacementEntry) {
 
-        Node<E> newNode = new Node<E>(replacementEntry);
         Node<E> currNode = firstNode;
-
-        for (int i = 0; i < position - 1; i++) {
-
+        if (position == 0) {
+            E firstOriginalEntry = firstNode.getData();
+            firstNode.setData(replacementEntry);
+            return firstOriginalEntry;
+        }
+        for (int i = 0; i < position; i++) {
             currNode = currNode.getNextNode();
         }
-
         E replacedEntry = currNode.getData();
-        Node<E> pointerNode = currNode.getNextNode();
-        currNode = newNode;
-        currNode.setNextNode(pointerNode);
+        currNode.setData(replacementEntry);
         return replacedEntry;
     }
-
     @Override
-
     public Object[] toArray() {
-
         Object[] array = new Object[numberOfEntries];
         Node<E> currNode = firstNode;
-
         for (int i = 0; i < numberOfEntries; i++) {
-
-            array[i] = (Object) currNode;
+            array[i] = currNode.getData();
             currNode = currNode.getNextNode();
         }
         return array;
-
     }
-
-    public void insertionSort(Comparator<? super E> comparator) {
-
+    public void insertionSort(Comparator<? super Object> comparator) {
         Object[] A = toArray();
-
-        for (int i = 1; i < numberOfEntries; i++) // Insert i&#39;th record
-
-            for (int j = i; (j > 0) && (A[j].compare(A[j - 1]) < 0); j--)
-
-                swap(A, j, j - 1);
+        for (int i = 1; i < numberOfEntries; i++) // Insert i'th record
+            for (int j = i; (j > 0) && (comparator.compare(A[j], A[j-1]) < 0); j--)
+              swap(A, j, j-1);
     }
-
     private void swap(Object[] a, int j, int i) {
-
         Object aAtIndexJ = a[j];
         a[j] = a[i];
         a[i] = aAtIndexJ;
     }
 
     public Iterator<E> iterator() {
-
         return new LinkedListIterator();
     }
-
-    // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
+//----------------------------------------------------------------------------
     /**
      * 
-     * @author &lt;chalice&gt;
-     * @param <T>
-     *            the type of element
+     * @author <chalice>
+     *
+     * @param <E> the type of element
      */
-
-    public class Node<T> {
+    @SuppressWarnings("hiding")
+    private class Node<E> {
 
         // The data element stored in the node.
-
-        private T data;
+        private E data;
 
         // The next node in the sequence.
-
-        private Node<T> next;
+        private Node<E> next;
 
         /**
          * Creates a new node with the given data
-         * @param data
+         *
+         * @param d
          *            the data to put inside the node
          */
-        public Node(T data) {
+        public Node(E d) {
+            data = d;
+        }
 
-            this.data = data;
+        public void setData(E replacementEntry) {
+            data = replacementEntry;
         }
 
         /**
          * Sets the node after this node
-         * @param newNode
+         *
+         * @param n
          *            the node after this one
          */
-        public void setNextNode(Node<T> newNode) {
-
-            next = newNode;
+        public void setNextNode(Node<E> n) {
+            next = n;
         }
 
         /**
          * Gets the next node
+         *
          * @return the next node
          */
-
-        public Node<T> getNextNode() {
-
+        public Node<E> getNextNode() {
             return next;
         }
 
         /**
          * Gets the data in the node
+         *
          * @return the data in the node
          */
-
-        public T getData() {
-
+        public E getData() {
             return data;
         }
     }
-
-    // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    // -- -- -- -- -- -- -- -- -- -- -- -- -- -
+//----------------------------------------------------------------------------
     /**
-     *
-     * @author &lt;chalice&gt;
      * 
-     *         Inner iterator class
+     * @author <chalice>
+     * Inner iterator class
+     *
      */
-
     private class LinkedListIterator implements Iterator<E> {
 
         private int index;
 
         public LinkedListIterator() {
-
             index = 0;
         }
-
-        @Override
         public boolean hasNext() {
-
             return index < getLength();
         }
-
-        @Override
         public E next() {
-
             if (hasNext()) {
-
                 E nextEntry = getEntry(index);
                 index++;
                 return nextEntry;
             }
             else {
-
-                throw new NoSuchElementException(
-                        "Illegal call to next() iterator is after end of list.");
+                throw new NoSuchElementException("Illegal call to next(); "
+                        + "iterator is after end of list.");
             }
         }
     }
+
 }
