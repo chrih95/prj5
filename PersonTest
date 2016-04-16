@@ -23,21 +23,21 @@ public class PersonTest extends student.TestCase {
      * Tests getMajor() on a person with a computer science major
      */
     public void testGetMajor() {
-        assertEquals(MajorEnum.COMPSCI, person.getMajor());
+        assertEquals("COMPSCI", person.getMajor());
     }
     
     /**
      * Tests getHobby() on a person with an art hobby
      */
     public void testGetHobby() {
-        assertEquals(HobbyEnum.ART, person.getHobby());
+        assertEquals("ART", person.getHobby());
     }
     
     /**
      * Tests getRegion() on a person from the northeast
      */
     public void testGetRegion() {
-        assertEquals(RegionEnum.NORTHEAST, person.getRegion());
+        assertEquals("NORTHEAST", person.getRegion());
     }
     
     /**
