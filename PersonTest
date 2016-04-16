@@ -1,5 +1,8 @@
 package prj5;
 
+/**
+* A test class that tests the methods in the Person class
+*/
 public class PersonTest extends student.TestCase {
     
     private Person person;
