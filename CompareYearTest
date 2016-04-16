@@ -1,0 +1,57 @@
+package prj5;
+
+/**
+ * Tests the compare method in the CompareYear class
+ * @author Christian Hawkes
+ *
+ */
+public class CompareYearTest extends student.TestCase {
+    /**
+     * A new CompareYear
+     */
+    public CompareYear comparer;
+    
+    /**
+     *A new Song 
+     */
+    public Song songHello;
+    
+    /**
+     * A new Song
+     */
+    public Song songYeah;
+    
+    /**
+     * Instantiates the comparer and the two songs
+     */
+    public void setUp() {
+        songHello = new Song("Pop", "Adele", "Hello", 2016, 23);
+        songYeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+        comparer = new CompareYear();
+    }
+    
+    /**
+     * Tests the compare method on the two songs when it should
+     * return an int greater than 0.
+     */
+    public void testCompareLessThan() {
+        assertTrue(comparer.compare(songHello, songYeah) > 0);
+    }
+    
+    /**
+     * Tests the compare method on the two songs when it should
+     * return an int less than 0.
+     */
+    public void testCompareMoreThan() {
+        assertTrue(comparer.compare(songYeah, songHello) < 0);
+    }
+    
+    /**
+     * Tests the compare method on the two songs when it should
+     * return 0.
+     */
+    public void testCompareEqual() {
+        assertEquals(0, comparer.compare(songHello, songHello));
+    }
+
+}
