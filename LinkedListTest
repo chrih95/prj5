@@ -1,10 +1,12 @@
 package prj5;
 
+import java.util.Comparator;
+
 
 /**
  * 
  * @author Christian Hawkes
- * @version (3.24.16)
+ * @version (4.16.16)
  *
  */
 public class LinkedListTest extends student.TestCase {
@@ -20,7 +22,7 @@ public class LinkedListTest extends student.TestCase {
     }
     
     /**
-     * 
+     * Tests the getLength() method
      */
     public void testGetLength() {
         assertEquals(0, list.getLength());
@@ -30,7 +32,7 @@ public class LinkedListTest extends student.TestCase {
     } 
     
     /**
-     * 
+     * Tests the add() method
      */
     public void testAdd() {        
         assertEquals(0, list.getLength());
@@ -42,11 +44,11 @@ public class LinkedListTest extends student.TestCase {
         list.add("bob");
         list.add("frank");
         assertEquals(6, list.getLength()); 
-        assertEquals("frank", list.getEntry(5));
+        assertEquals("frank", list.getEntry(0));
     }
     
     /**
-     * 
+     * Tests the isEmpty() method
      */
     public void testIsEmpty() {
         assertTrue(list.isEmpty());
@@ -55,25 +57,25 @@ public class LinkedListTest extends student.TestCase {
     }
     
     /**
-     * 
+     * Tests the remove() method
      */
     public void testRemove() {
         assertEquals(0, list.getLength());
         list.add("bob");
         assertEquals(1, list.getLength());
-        assertEquals("bob", list.remove(0));
+        assertEquals("bob", list.remove(1));
         assertEquals(0, list.getLength());
         list.add("bob");
         list.add("bob");
         list.add("frank");
         assertEquals(3, list.getLength());
-        assertEquals("frank", list.remove(2));
+        assertEquals("bob", list.remove(2));
         assertEquals(2, list.getLength());
         
     }
     
     /**
-     * 
+     * Tests the getEntry() method
      */
     public void testGetEntry() {
         list.add("bob");
@@ -82,14 +84,14 @@ public class LinkedListTest extends student.TestCase {
         list.add("tim");
         list.add("frank");
         
-        assertEquals("bob", list.getEntry(0));
+        assertEquals("frank", list.getEntry(0));
         assertEquals("lilly", list.getEntry(2));
-        assertEquals("frank", list.getEntry(4));
+        assertEquals("bob", list.getEntry(4));
         
     }
     
     /**
-     * 
+     * Tests the contains() method
      */
     public void testContains() {
         assertFalse(list.contains("bob"));
@@ -105,7 +107,7 @@ public class LinkedListTest extends student.TestCase {
     }
     
     /**
-     * 
+     * Tests the clear() method
      */
     public void testClear() {
         list.add("bob");
@@ -117,5 +119,60 @@ public class LinkedListTest extends student.TestCase {
         list.clear();
         assertEquals(0, list.getLength());
     }
-
+    
+    /**
+     * Tests the replace() method
+     */
+    public void testReplace() {
+        list.add("bob");
+        list.add("tom");
+        list.add("lilly");
+        list.add("tim");
+        list.add("frank");
+        
+        assertEquals("bob", list.getEntry(4));
+        assertEquals("bob", list.replace(4, "fred"));
+        assertEquals("fred", list.getEntry(4));
+        
+        assertEquals("lilly", list.getEntry(2));
+        assertEquals("lilly", list.replace(2, "sam"));
+        assertEquals("sam", list.getEntry(2));
+        
+        assertEquals("frank", list.getEntry(0));
+        assertEquals("frank", list.replace(0, "john"));
+        assertEquals("john", list.getEntry(0));
+    }
+    
+    /**
+     * Tests the toArray() method
+     */
+    public void testToArray() {
+        list.add("bob");
+        list.add("tom");
+        list.add("lilly");
+        list.add("tim");
+        list.add("frank");
+        
+        Object[] newArray = new Object[5];
+        assertEquals(newArray.length, list.toArray().length);
+    }
+    
+    /**
+     * Tests the insertionSort() method
+     */
+    public void testInsertionSort() {
+        list.add("bob");
+        list.add("tom");
+        list.add("lilly");
+        
+        assertEquals("lilly", list.getEntry(0));
+        assertEquals("tom", list.getEntry(1));
+        assertEquals("bob", list.getEntry(2));
+        
+        CompareArtist comparer = new CompareArtist();
+        list.insertionSort(comparer);
+        assertEquals("bob", list.getEntry(0));
+        assertEquals("lilly", list.getEntry(1));
+        assertEquals("tom", list.getEntry(2));
+    }
 }
