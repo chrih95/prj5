@@ -10,9 +10,9 @@ import CS2114.WindowSide;
 import CS2114.TextShape;
 
 /**
- * 
+ * Creates the game window with the buttons,
+ * glyphs, and a legend.
  * @author Christian Hawkes
- *
  */
 public class GUIMusicWindow {
     
@@ -37,8 +37,9 @@ public class GUIMusicWindow {
     public Shape divider;
     
     /**
-     * 
-     * @param list
+     * Instantiates all the buttons, builds the glyphs, 
+     * and creates the legend.
+     * @param list The data list
      */
     public GUIMusicWindow(DataList list) {
         window = new Window("Project 5");
@@ -105,15 +106,16 @@ public class GUIMusicWindow {
     }
     
     /**
-     * 
-     * @return
+     * Returns the window.
+     * @return the window
      */
     public Window getWindow() {
         return window;
     }
     
     /**
-     * 
+     * Creates the legend in the lower right hand corner of the window
+     * that shows how the survey results are currently being represented.
      */
     public void makeLegend() {
         int x = window.getGraphPanelWidth() + 110;
@@ -165,8 +167,10 @@ public class GUIMusicWindow {
     }
     
     /**
-     * 
-     * @param button
+     * Changes the list of songs represented on 
+     * the screen based on which sort button
+     * was pressed.
+     * @param button The sortBy button
      */
     public void clickedCategory(Button button) {
         if (button.equals(sortByArtistButton)) {
