@@ -1,0 +1,43 @@
+package prj5;
+
+import student.TestCase;
+
+public class DataListTest extends TestCase {
+
+    private DataList dataList;
+    private Person newPerson;
+    private Song newSong;
+
+    public void setUp() {
+        dataList = new DataList();
+        String[] heard = {"yes"};
+        String[] liked = {"no"};
+        newPerson = new Person(MajorEnum.COMPSCI, HobbyEnum.ART,
+                RegionEnum.NORTHEAST, heard, liked);
+        newSong = new Song("genre", "artist", "title", 2016, 1);
+    }
+
+    public void testGetPersonList() {
+        assertTrue(dataList.getPersonList().isEmpty());
+        dataList.addPerson(newPerson);
+        assertFalse(dataList.getPersonList().isEmpty());
+    }
+    public void testGetSongList() {
+        assertTrue(dataList.getSongList().isEmpty());
+        dataList.addSong(newSong);
+        assertFalse(dataList.getSongList().isEmpty());
+    }
+    public void testAddSong() {
+        dataList.addSong(newSong);
+        assertTrue(dataList.getSongList().contains(newSong));
+    }
+    public void testAddPerson() {
+        String[] heard = {"yes"};
+        String[] liked = {"no"};
+        Person newPerson = new Person(MajorEnum.COMPSCI, HobbyEnum.ART,
+                RegionEnum.NORTHEAST, heard, liked);
+        dataList.addPerson(newPerson);
+        assertTrue(dataList.getPersonList().contains(newPerson));
+    }
+
+}
