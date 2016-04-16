@@ -1,5 +1,9 @@
 package prj5;
 
+/**
+* A class that represents a person with a major, hobby, region and 
+* an array of their heard responses and an array of their like responses.
+*/
 public class Person {
 
     private MajorEnum major;
