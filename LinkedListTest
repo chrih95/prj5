@@ -1,0 +1,121 @@
+package prj5;
+
+
+/**
+ * 
+ * @author Christian Hawkes
+ * @version (3.24.16)
+ *
+ */
+public class LinkedListTest extends student.TestCase {
+    
+    private LinkedList<String> list;
+    
+    /**
+     * Sets it up
+     */
+    public void setUp() {
+        list = new LinkedList<String>();
+    
+    }
+    
+    /**
+     * 
+     */
+    public void testGetLength() {
+        assertEquals(0, list.getLength());
+        list.add("bob");
+        assertEquals(1, list.getLength());
+        assertEquals("bob", list.getEntry(0));
+    } 
+    
+    /**
+     * 
+     */
+    public void testAdd() {        
+        assertEquals(0, list.getLength());
+        list.add("bob");
+        assertEquals(1, list.getLength());
+        list.add("bob");
+        list.add("bob");
+        list.add("bob");
+        list.add("bob");
+        list.add("frank");
+        assertEquals(6, list.getLength()); 
+        assertEquals("frank", list.getEntry(5));
+    }
+    
+    /**
+     * 
+     */
+    public void testIsEmpty() {
+        assertTrue(list.isEmpty());
+        list.add("bob");
+        assertFalse(list.isEmpty());
+    }
+    
+    /**
+     * 
+     */
+    public void testRemove() {
+        assertEquals(0, list.getLength());
+        list.add("bob");
+        assertEquals(1, list.getLength());
+        assertEquals("bob", list.remove(0));
+        assertEquals(0, list.getLength());
+        list.add("bob");
+        list.add("bob");
+        list.add("frank");
+        assertEquals(3, list.getLength());
+        assertEquals("frank", list.remove(2));
+        assertEquals(2, list.getLength());
+        
+    }
+    
+    /**
+     * 
+     */
+    public void testGetEntry() {
+        list.add("bob");
+        list.add("tom");
+        list.add("lilly");
+        list.add("tim");
+        list.add("frank");
+        
+        assertEquals("bob", list.getEntry(0));
+        assertEquals("lilly", list.getEntry(2));
+        assertEquals("frank", list.getEntry(4));
+        
+    }
+    
+    /**
+     * 
+     */
+    public void testContains() {
+        assertFalse(list.contains("bob"));
+        list.add("bob");
+        list.add("tom");
+        list.add("lilly");
+        list.add("tim");
+        list.add("frank");
+        assertTrue(list.contains("bob"));
+        assertTrue(list.contains("lilly"));
+        assertTrue(list.contains("frank"));
+        assertFalse(list.contains("cordellia"));
+    }
+    
+    /**
+     * 
+     */
+    public void testClear() {
+        list.add("bob");
+        list.add("tom");
+        list.add("lilly");
+        list.add("tim");
+        list.add("frank");
+        assertEquals(5, list.getLength());
+        list.clear();
+        assertEquals(0, list.getLength());
+    }
+
+}
