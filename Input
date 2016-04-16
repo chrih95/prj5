@@ -1,5 +1,8 @@
 package prj5;
 
+/**
+* Runs the program by reading the two input files.
+*/
 public class Input {
 
     /**
