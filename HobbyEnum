@@ -1,5 +1,9 @@
 package prj5;
 
+/**
+* An Enumeration with READING, SPROTS, MUSIC, and ART representing
+* the hobby of each person.
+*/
 public enum HobbyEnum {
     READING, SPORTS, MUSIC, ART;
 
