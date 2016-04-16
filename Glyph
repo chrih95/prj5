@@ -10,6 +10,7 @@ public SquareShape glyph;
 
     /**
     * Creates and returns a new square shape.
+    * @return The new glyph
     */
     public SquareShape buildGlyph() {
         glyph = new SquareShape(150, 50, 150, Color.WHITE);
