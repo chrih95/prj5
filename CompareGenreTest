@@ -2,7 +2,7 @@ package prj5;
 
 /**
  * Tests the compare method in the CompareTitle class
- * @author Christian Hawkes
+ * @author 
  *
  */
 public class CompareGenreTest extends student.TestCase {
@@ -10,16 +10,6 @@ public class CompareGenreTest extends student.TestCase {
      * A new CompareTitle
      */
     public CompareGenre comparer;
-    
-    /**
-     *A new Song 
-     */
-    public String hello;
-    
-    /**
-     * A new Song
-     */
-    public String yeah;
     
     /**
      *A new Song 
@@ -37,8 +27,6 @@ public class CompareGenreTest extends student.TestCase {
     public void setUp() {
         songHello = new Song("Pop", "Adele", "Hello", 2016, 23);
         songYeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
-        hello = songHello.getGenre();
-        yeah = songYeah.getGenre();
         comparer = new CompareGenre();
     }
     
@@ -47,7 +35,7 @@ public class CompareGenreTest extends student.TestCase {
      * return an int greater than 0.
      */
     public void testCompareLessThan() {
-        assertTrue(comparer.compare(hello, yeah) > 0);
+        assertTrue(comparer.compare(songHello, songYeah) > 0);
     }
     
     /**
@@ -55,7 +43,7 @@ public class CompareGenreTest extends student.TestCase {
      * return an int less than 0.
      */
     public void testCompareMoreThan() {
-        assertTrue(comparer.compare(yeah, hello) < 0);
+        assertTrue(comparer.compare(songYeah, songHello) < 0);
     }
     
     /**
@@ -63,7 +51,7 @@ public class CompareGenreTest extends student.TestCase {
      * return 0.
      */
     public void testCompareEqual() {
-        assertEquals(0, comparer.compare(hello, hello));
+        assertEquals(0, comparer.compare(songHello, songHello));
     }
 
 }
