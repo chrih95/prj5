@@ -1,5 +1,9 @@
 package prj5;
 
+/**
+* An Enumeration with NORTHEAST, SOUTHEAST, USOTHER, and OTHER 
+* representing the region from which each person is from.
+*/
 public enum RegionEnum {
     NORTHEAST, SOUTHEAST, USOTHER, OTHER;
 
