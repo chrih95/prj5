@@ -1,0 +1,57 @@
+package prj5;
+
+/**
+ * Tests the compare method in the CompareTitle class
+ * @author 
+ *
+ */
+public class CompareGenreTest extends student.TestCase {
+    /**
+     * A new CompareTitle
+     */
+    public CompareGenre comparer;
+    
+    /**
+     *A new Song 
+     */
+    public Song hello;
+    
+    /**
+     * A new Song
+     */
+    public Song yeah;
+    
+    /**
+     * Instantiates the comparer and the two songs
+     */
+    public void setUp() {
+        hello = new Song("Pop", "Adele", "Hello", 2016, 23);
+        yeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+        comparer = new CompareGenre();
+    }
+    
+    /**
+     * Tests the compare method on the two songs when it should
+     * return an int greater than 0.
+     */
+    public void testCompareLessThan() {
+        assertTrue(comparer.compare(hello, yeah) > 0);
+    }
+    
+    /**
+     * Tests the compare method on the two songs when it should
+     * return an int less than 0.
+     */
+    public void testCompareMoreThan() {
+        assertTrue(comparer.compare(yeah, hello) < 0);
+    }
+    
+    /**
+     * Tests the compare method on the two songs when it should
+     * return 0.
+     */
+    public void testCompareEqual() {
+        assertEquals(0, comparer.compare(hello, hello));
+    }
+
+}
