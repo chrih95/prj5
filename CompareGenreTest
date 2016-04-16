@@ -2,7 +2,7 @@ package prj5;
 
 /**
  * Tests the compare method in the CompareTitle class
- * @author 
+ * @author Christian Hawkes
  *
  */
 public class CompareGenreTest extends student.TestCase {
