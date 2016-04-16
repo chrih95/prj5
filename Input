@@ -1,9 +1,21 @@
 package prj5;
 
 public class Input {
-    
-    public void main(String[] args) {
-        
-    }
 
+    /**
+     * main() method runs the program
+     * @param args    the supplied command-line arguments
+     *                as an array of String objects
+     */
+    public static void main(String[] args) {
+        
+        if (args.length == 2) {
+            
+            new ListReader(args[0], args[1]);
+        }
+        else {
+            
+            new ListReader("MusicSurveyData2016S.csv", "SongList2016S.csv");
+        }
+    }
 }
