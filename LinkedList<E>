@@ -135,15 +135,16 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         return array;
     }
     public void insertionSort(Comparator<? super Object> comparator) {
-        Object[] A = toArray();
+
         for (int i = 1; i < numberOfEntries; i++) // Insert i'th record
-            for (int j = i; (j > 0) && (comparator.compare(A[j], A[j-1]) < 0); j--)
-              swap(A, j, j-1);
+            for (int j = i; (j > 0) && (comparator.compare(getEntry(j), getEntry(j-1)) < 0); j--)
+              swap(j, j-1);
     }
-    private void swap(Object[] a, int j, int i) {
-        Object aAtIndexJ = a[j];
-        a[j] = a[i];
-        a[i] = aAtIndexJ;
+    @SuppressWarnings("unchecked")
+    private void swap(int j, int i) {
+        Object aAtIndexJ = getEntry(j);
+        replace(j, getEntry(i));
+        replace(i, (E) aAtIndexJ);
     }
 
     public Iterator<E> iterator() {
