@@ -43,16 +43,6 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
     }
     
     /**
-    * Adds the node at the given position
-    * @param entry The entry to add the item
-    * @param item The new item to add
-    */
-    @Override
-    public void add(int entry, E item) {
-        // Why do we need this
-    }
-    
-    /**
     * Clears the list
     */
     @Override
