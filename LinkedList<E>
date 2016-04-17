@@ -1,6 +1,6 @@
 package prj5;
 
-import java.util.Comparator;//should take this out
+import java.util.Comparator; //should take this out
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -8,7 +8,7 @@ import list.ListInterface;
 /**
  * This class implements a linked list data structure
  * @author Owner
- *
+ * @version (4.16.16)
  * @param <E>
  */
 public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
@@ -27,6 +27,7 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
     /**
     * Creates a new node with the given data and
     * adds the new node to the front of the list.
+    * @param newEntry The item to add
     */
     @Override
     public void add(E newEntry) {
@@ -43,9 +44,11 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
     
     /**
     * Adds the node at the given position
+    * @param entry The entry to add the item
+    * @param item The new item to add
     */
     @Override
-    public void add(int arg0, E arg1) {
+    public void add(int entry, E item) {
         // Why do we need this
     }
     
@@ -63,6 +66,7 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
     * with the given data.
     * @param findEntry The data to be found
     * @return True if the node was found
+    * @return true if the item is in the list
     */
     @Override
     public boolean contains(E findEntry) {
