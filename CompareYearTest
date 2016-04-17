@@ -61,5 +61,13 @@ public class CompareYearTest extends student.TestCase {
         String stringSong = "new song";
         assertEquals(0, comparer.compare(songHello, stringSong));
     }
+    
+    /**
+    * Tests the compare method with a song and an int
+    */
+      public void testCompareNotSong() {
+          String stringSong = "new song";
+          assertEquals(0, comparer.compare(stringSong, songHello));
+      }
 
 }
