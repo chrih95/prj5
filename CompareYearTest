@@ -3,7 +3,7 @@ package prj5;
 /**
  * Tests the compare method in the CompareYear class
  * @author Christian Hawkes
- *
+ * @version (4.16.16)
  */
 public class CompareYearTest extends student.TestCase {
     /**
