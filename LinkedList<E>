@@ -163,12 +163,23 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         return array;
     }
+    
+    /**
+    * Sorts the list according to the comparator passed in
+    * @param comparator Used to compare the items in the list
     public void insertionSort(Comparator<? super Object> comparator) {
 
-        for (int i = 1; i < numberOfEntries; i++) // Insert i'th record
-            for (int j = i; (j > 0) && (comparator.compare(getEntry(j), getEntry(j-1)) < 0); j--)
-              swap(j, j-1);
+        for (int i = 1; i < numberOfEntries; i++) { // Insert i'th record
+            for (int j = i; (j > 0) && 
+                (comparator.compare(getEntry(j), getEntry(j - 1)) < 0); j--) {
+                swap(j, j - 1);
+            }
+        }
     }
+    
+    /**
+    * Swaps the indeces passed in
+    */
     @SuppressWarnings("unchecked")
     private void swap(int j, int i) {
         Object aAtIndexJ = getEntry(j);
@@ -176,6 +187,10 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         replace(i, (E) aAtIndexJ);
     }
 
+    /**
+    * Returns a new LinkedListIterator()
+    * @return a new iterator
+    */
     public Iterator<E> iterator() {
         return new LinkedListIterator();
     }
@@ -205,6 +220,10 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
             data = d;
         }
 
+        /**
+        * Sets the data of the current node
+        * @param replacementEntry The new data
+        */
         public void setData(E replacementEntry) {
             data = replacementEntry;
         }
@@ -248,12 +267,25 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
 
         private int index;
 
+        /**
+        * Sets the index to 0
+        */
         public LinkedListIterator() {
             index = 0;
         }
+        
+        /**
+        * Returns true if the node has a next
+        * @return true if node has next
+        */
         public boolean hasNext() {
             return index < getLength();
         }
+        
+        /**
+        * Returns the current data and increments to next node
+        * @return The current data
+        */
         public E next() {
             if (hasNext()) {
                 E nextEntry = getEntry(index);
