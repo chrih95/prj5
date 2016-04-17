@@ -3,7 +3,7 @@ package prj5;
 /**
  * Tests the compare method in the CompareTitle class
  * @author Christian Hawkes
- *
+ * @version (4.16.16)
  */
 public class CompareTitleTest extends student.TestCase {
     /**
@@ -66,10 +66,10 @@ public class CompareTitleTest extends student.TestCase {
     * Tests the compare method when the first parameter is not
     * a song.
     */
-     public void testCompareNotSong() {
-         int numSong = 4;
-         int numSong2 = 8;
-         assertEquals(0, comparer.compare(numSong, numSong2));
-     }
+    public void testCompareNotSong() {
+        int numSong = 4;
+        int numSong2 = 8;
+        assertEquals(0, comparer.compare(numSong, numSong2));
+    }
 
 }
