@@ -111,5 +111,37 @@ public class DataListTest extends TestCase {
         assertEquals(songYeah, dataList.getSongList().getEntry(0));
         assertEquals(songHello, dataList.getSongList().getEntry(1));
     }
+    
+    /**
+     * Tests the sortByTitle() method
+     */
+    public void testSortByTitle() {
+        Song songHello = new Song("Pop", "Adele", "Hello", 2016, 23);
+        Song songYeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+       
+        dataList.addSong(songHello);
+        dataList.addSong(songYeah);
+        assertEquals(songYeah, dataList.getSongList().getEntry(0));
+        assertEquals(songHello, dataList.getSongList().getEntry(1));
+        dataList.sortByTitle();
+        assertEquals(songYeah, dataList.getSongList().getEntry(1));
+        assertEquals(songHello, dataList.getSongList().getEntry(0));
+    }
+    
+    /**
+     * Tests the sortByYear() method
+     */
+    public void testSortByYear() {
+        Song songHello = new Song("Pop", "Adele", "Hello", 2016, 23);
+        Song songYeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+        dataList.addSong(songYeah);
+        dataList.addSong(songHello);
+        
+        assertEquals(songYeah, dataList.getSongList().getEntry(1));
+        assertEquals(songHello, dataList.getSongList().getEntry(0));
+        dataList.sortByYear();
+        assertEquals(songYeah, dataList.getSongList().getEntry(0));
+        assertEquals(songHello, dataList.getSongList().getEntry(1));
+    }
 }
 
