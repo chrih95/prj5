@@ -63,6 +63,21 @@ public class DataListTest extends TestCase {
         dataList.addPerson(newPerson);
         assertTrue(dataList.getPersonList().contains(newPerson));
     }
-
+    
+    /**
+     * Tests the addPerson() method
+     */
+    public void testAddPersonNull() {
+        assertTrue(DataList.getPersonList().isEmpty());
+        dataList.addPerson(null);
+        assertTrue(DataList.getPersonList().isEmpty());
+    }
+    
+    /**
+     * Tests the toString() method
+     */
+    public void testToString() {
+        assertEquals("", dataList.toString());
+    }
 }
 
