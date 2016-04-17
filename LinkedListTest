@@ -48,8 +48,10 @@ public class LinkedListTest extends student.TestCase {
      * Tests the isEmpty() method
      */
     public void testIsEmpty() {
+        assertEquals(0, list.getLength());
         assertTrue(list.isEmpty());
         list.add("bob");
+        assertEquals(1, list.getLength());
         assertFalse(list.isEmpty());
     }
     
@@ -101,6 +103,13 @@ public class LinkedListTest extends student.TestCase {
         assertTrue(list.contains("lilly"));
         assertTrue(list.contains("frank"));
         assertFalse(list.contains("cordellia"));
+    }
+    
+    /**
+     * Tests the contains() method
+     */
+    public void testContainsNull() {
+        assertFalse(list.contains(null));
     }
     
     /**
