@@ -6,7 +6,7 @@ import java.util.Comparator;
 /**
  * Compares songs based on their genre.
  * @author Christian Hawkes
- *
+ * @version (4.16.16)
  */
 public class CompareGenre implements Comparator<Object> {
 
