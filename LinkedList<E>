@@ -67,14 +67,17 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
     @Override
     public boolean contains(E findEntry) {
         Iterator<E> iterator = this.iterator();
-        if (firstNode.getData().equals(findEntry)) {
-            return true;
-        }
-        while (iterator.hasNext()) {
-            if (iterator.next().equals(findEntry)) {
+        if (findEntry != null && firstNode != null) {
+            if (firstNode.getData().equals(findEntry)) {
                 return true;
             }
+            while (iterator.hasNext()) {
+                if (iterator.next().equals(findEntry)) {
+                    return true;
+                }
+            }
         }
+
         return false;
     }
     @Override
@@ -105,17 +108,31 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
     @Override
     public E remove(int position) {
         Node<E> currNode = firstNode;
-        if (position == 0) {
-            firstNode = firstNode.getNextNode();
-            numberOfEntries = 0;
+        E removedEntry = currNode.getData();
+        if ((this.getLength() == 1) && position == 0) {
+            // E removedEntry = currNode.getData();
+            firstNode = null;
+            numberOfEntries--;
         }
-        for (int i = 0; i < position - 1; i++) {
-            currNode = currNode.getNextNode();
+
+        else {
+            if (position == 0) {
+                firstNode = firstNode.getNextNode();
+                numberOfEntries = 0;
+            }
+            for (int i = 0; i < position - 1; i++) {
+                currNode = currNode.getNextNode();
+            }
+            removedEntry = currNode.getData();
+            if (currNode.getNextNode() != null) {
+                currNode.setNextNode(currNode.getNextNode().getNextNode());
+            }
+            numberOfEntries--;
+
         }
-        E removedEntry = currNode.getNextNode().getData();
-        currNode.setNextNode(currNode.getNextNode().getNextNode());
         return removedEntry;
     }
+    
     @Override
     public E replace(int position, E replacementEntry) {
 
