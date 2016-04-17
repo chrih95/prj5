@@ -183,19 +183,19 @@ public class GUIMusicWindow {
      */
     public void clickedCategory(Button button) {
         if (button.equals(sortByArtistButton)) {
-            
+            list.getSongList().sort(artistCompare);
         }
         
         else if (button.equals(sortByGenreButton)) {
-            
+            list.getSongList().sort(genreCompare);
         }
         
         else if (button.equals(sortByTitleButton)) {
-            
+            list.getSongList().sort(titleCompare);
         }
         
         else if (button.equals(sortByYearButton)) {
-            
+            list.getSongList().sort(yearCompare);
         }
     }
     
