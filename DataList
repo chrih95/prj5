@@ -64,6 +64,10 @@ public class DataList {
         }
     }
     
+    /**
+    * Creates a String representation of the LinkedList of songs
+    * @return A string
+    */ 
     @Override
     public String toString() {
 
