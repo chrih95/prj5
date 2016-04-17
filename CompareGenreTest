@@ -68,7 +68,8 @@ public class CompareGenreTest extends student.TestCase {
     */
      public void testCompareNotSong() {
          int numSong = 4;
-         assertEquals(0, comparer.compare(numSong, songYeah));
+         int numSong2 = 9;
+         assertEquals(0, comparer.compare(numSong, numSong2));
      }
 
 }
