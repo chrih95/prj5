@@ -5,7 +5,7 @@ import student.TestCase;
 /**
  * Tests the methods in the DataList class
  * @author alicechoi
- *
+ * @version (4.16.16)
  */
 public class DataListTest extends TestCase {
 
@@ -58,7 +58,7 @@ public class DataListTest extends TestCase {
     public void testAddPerson() {
         String[] heard = {"yes"};
         String[] liked = {"no"};
-        Person newPerson = new Person(MajorEnum.COMPSCI, HobbyEnum.ART,
+        newPerson = new Person(MajorEnum.COMPSCI, HobbyEnum.ART,
                 RegionEnum.NORTHEAST, heard, liked);
         dataList.addPerson(newPerson);
         assertTrue(dataList.getPersonList().contains(newPerson));
