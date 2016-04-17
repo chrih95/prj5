@@ -61,5 +61,14 @@ public class CompareArtistTest extends student.TestCase {
         int numSong = 4;
         assertEquals(0, comparer.compare(songHello, numSong));
     }
+    
+    /**
+    * Tests the compare method when the first parameter is not
+    * a song.
+    */
+     public void testCompareNotSong() {
+         int numSong = 4;
+         assertEquals(0, comparer.compare(numSong, songYeah));
+     }
 
 }
