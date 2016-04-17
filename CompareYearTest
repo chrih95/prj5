@@ -35,7 +35,7 @@ public class CompareYearTest extends student.TestCase {
      * return an int greater than 0.
      */
     public void testCompareLessThan() {
-        assertTrue(comparer.compare(songHello, songYeah) > 0);
+        assertEquals(12, comparer.compare(songHello, songYeah));
     }
     
     /**
@@ -43,7 +43,7 @@ public class CompareYearTest extends student.TestCase {
      * return an int less than 0.
      */
     public void testCompareMoreThan() {
-        assertTrue(comparer.compare(songYeah, songHello) < 0);
+        assertEquals(-12, comparer.compare(songYeah, songHello));
     }
     
     /**
