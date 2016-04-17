@@ -1,9 +1,10 @@
+package prj5;
+
 import java.util.Comparator;//should take this out
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import list.ListInterface;
-
 /**
  * This class implements a linked list data structure
  * @author Owner
@@ -66,25 +67,16 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
     @Override
     public boolean contains(E findEntry) {
         Iterator<E> iterator = this.iterator();
-        if (findEntry != null && firstNode != null) {
-            if (firstNode.getData().equals(findEntry)) {
+        if (firstNode.getData().equals(findEntry)) {
+            return true;
+        }
+        while (iterator.hasNext()) {
+            if (iterator.next().equals(findEntry)) {
                 return true;
             }
-            while (iterator.hasNext()) {
-                if (iterator.next().equals(findEntry)) {
-                    return true;
-                }
-            }
         }
-
         return false;
     }
-    
-    /**
-    * Returns the data in the node at the given position
-    * @param position The position of the node to be returned
-    * @return The data at the given position
-    */
     @Override
     public E getEntry(int position) {
         Node<E> currNode = firstNode;
@@ -96,65 +88,34 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         return currNode.getData();
     }
-    
-    /**
-    * Returns the length of the list
-    * @return The length of the list
-    */
     @Override
     public int getLength() {
         return numberOfEntries;
     }
-    
-    /**
-    * Returns true if the list is empty
-    * @return true if the list is empty
-    */ 
     @Override
     public boolean isEmpty() {
         return firstNode == null && numberOfEntries == 0;
     }
     
     /**
-    * Removes and returns the data in the node at the given position
-    * @param position The position of the node to be removed
-    * @return the data of the removed node
-    */
+     * Method removes a node from a specified position
+     * @param position    the specified position
+     * @return the data from the removed node
+     */
     @Override
     public E remove(int position) {
         Node<E> currNode = firstNode;
-        E removedEntry = currNode.getData();
-        if ((this.getLength() == 1) && position == 0) {
-            // E removedEntry = currNode.getData();
-            firstNode = null;
-            numberOfEntries--;
+        if (position == 0) {
+            firstNode = firstNode.getNextNode();
+            numberOfEntries = 0;
         }
-
-        else {
-            if (position == 0) {
-                firstNode = firstNode.getNextNode();
-                numberOfEntries = 0;
-            }
-            for (int i = 0; i < position - 1; i++) {
-                currNode = currNode.getNextNode();
-            }
-            removedEntry = currNode.getData();
-            if (currNode.getNextNode() != null) {
-                currNode.setNextNode(currNode.getNextNode().getNextNode());
-            }
-            numberOfEntries--;
-
+        for (int i = 0; i < position - 1; i++) {
+            currNode = currNode.getNextNode();
         }
+        E removedEntry = currNode.getNextNode().getData();
+        currNode.setNextNode(currNode.getNextNode().getNextNode());
         return removedEntry;
     }
-    
-    /**
-    * Replaces and returns the data at the given position with
-    * the data given
-    * @param position The position to swap
-    * @param replacementEntry The data to swap in
-    * @return The data that was replaced
-    */
     @Override
     public E replace(int position, E replacementEntry) {
 
@@ -171,11 +132,6 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         currNode.setData(replacementEntry);
         return replacedEntry;
     }
-    
-    /**
-    * Returns an arrary of the elements in the list
-    * @return An aray 
-    */
     @Override
     public Object[] toArray() {
         Object[] array = new Object[numberOfEntries];
@@ -186,23 +142,12 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         return array;
     }
-    
-    /**
-    * Calls the swap method to sort the elements in the list.
-    * @param comparator Compares the elements at j and j-1
-    */
     public void insertionSort(Comparator<? super Object> comparator) {
 
         for (int i = 1; i < numberOfEntries; i++) // Insert i'th record
             for (int j = i; (j > 0) && (comparator.compare(getEntry(j), getEntry(j-1)) < 0); j--)
               swap(j, j-1);
     }
-    
-    /**
-    * A helper method to swap the elements at the given entries
-    * @param j The first position
-    * @param i The second position
-    */
     @SuppressWarnings("unchecked")
     private void swap(int j, int i) {
         Object aAtIndexJ = getEntry(j);
@@ -210,16 +155,12 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         replace(i, (E) aAtIndexJ);
     }
 
-    /**
-    * Creates a new iterator
-    * @return a new linked list iterator
-    */
     public Iterator<E> iterator() {
         return new LinkedListIterator();
     }
 //----------------------------------------------------------------------------
     /**
-     * The inner Node class
+     * 
      * @author <chalice>
      *
      * @param <E> the type of element
@@ -243,10 +184,6 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
             data = d;
         }
 
-        /**
-        * Sets the data of the node to the given parameter
-        * @param replacementEntry The new data
-        */
         public void setData(E replacementEntry) {
             data = replacementEntry;
         }
@@ -290,26 +227,12 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
 
         private int index;
 
-        /**
-        * Sets the index to 0
-        */
         public LinkedListIterator() {
             index = 0;
         }
-        
-        /**
-        * Returns true if the the current node has a next
-        * @return True if the node has a next
-        */
         public boolean hasNext() {
             return index < getLength();
         }
-        
-        /**
-        * Returns the current data and increments to the next node
-        * @throws NoSuchElementExcpeption if the node doesn't have a next
-        * @return The current data
-        */
         public E next() {
             if (hasNext()) {
                 E nextEntry = getEntry(index);
