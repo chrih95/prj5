@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Compares songs based on the artist name
  * @author Christian Hawkes
- *
+ * @version (4.16.16)
  */
 public class CompareArtist implements Comparator<Object> {
 
