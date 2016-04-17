@@ -105,7 +105,7 @@ public class Song {
     */
     public String representHobby() {
         
-        int[] heardSong = {0,0,0,0};
+        int[] heardSong = {0, 0, 0, 0};
         LinkedList<Person> personList = DataList.getPersonList();
         int numReading = 0;
         int numArt = 0;
@@ -177,7 +177,7 @@ public class Song {
         }
         heard = heardSong;
         
-        int[] likedSong = {0,0,0,0};
+        int[] likedSong = {0, 0, 0, 0};
         
         for (int i = 0; i < personList.getLength(); i++) {
             
@@ -249,7 +249,7 @@ public class Song {
     */
     public void representRegion() {
         
-        int[] heardSong = {0,0,0,0};
+        int[] heardSong = {0, 0, 0, 0};
         LinkedList<Person> personList = DataList.getPersonList();
         int numNortheast = 0;
         int numSoutheast = 0;
@@ -297,7 +297,7 @@ public class Song {
         heardSong[3] = (heardSong[3] * 100) / numOther;
         heard = heardSong;
         
-        int[] likedSong = {0,0,0,0};
+        int[] likedSong = {0, 0, 0, 0};
         
         for (int i = 0; i < personList.getLength() - 1; i++) {
             
