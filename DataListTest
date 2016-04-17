@@ -79,5 +79,21 @@ public class DataListTest extends TestCase {
     public void testToString() {
         assertEquals("", dataList.toString());
     }
+    
+    /**
+     * Tests the sortByArtist() method
+     */
+    public void testSortByArtist() {
+        Song songHello = new Song("Pop", "Adele", "Hello", 2016, 23);
+        Song songYeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
+        
+        dataList.addSong(songHello);
+        dataList.addSong(songYeah);
+        assertEquals(songYeah, dataList.getSongList().getEntry(0));
+        assertEquals(songHello, dataList.getSongList().getEntry(1));
+        dataList.sortByArtist();
+        assertEquals(songYeah, dataList.getSongList().getEntry(1));
+        assertEquals(songHello, dataList.getSongList().getEntry(0));
+    }
 }
 
