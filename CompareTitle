@@ -3,6 +3,7 @@ package prj5;
 /**
  * Compares the titles of songs.
  * @author Christian Hawkes
+ * @version (4.16.16)
  */
 public class CompareTitle implements Comparator<Object> {
     
