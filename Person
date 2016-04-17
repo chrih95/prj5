@@ -1,15 +1,17 @@
 package prj5;
 
 /**
-* A class that represents a person with a major, hobby, region and 
-* an array of their heard responses and an array of their like responses.
-* @version (4.16.16)
-*/
+ * Person represents a person that took the survey
+ * @author Chandler Manns (chandm8)
+ * @version 2016.04.16
+ */
 public class Person {
 
     private MajorEnum major;
     private HobbyEnum hobby;
     private RegionEnum region;
+    private String[] heard;
+    private String[] liked;
 
     /**
      * Creates a new Person with a major, hobby, region, and arrays of whether
@@ -26,14 +28,34 @@ public class Person {
      * @param liked
      *            The array of whether or not the Person has liked certain songs
      */
-    public Person(MajorEnum major, HobbyEnum hobby, RegionEnum region, String[] heard,
-            String[] liked) {
+    public Person(MajorEnum major, HobbyEnum hobby, RegionEnum region,
+            String[] heard, String[] liked) {
 
         this.major = major;
         this.hobby = hobby;
         this.region = region;
+        this.heard = heard;
+        this.liked = liked;
     }
 
+    /**
+     * Method returns the heard responses from the person
+     * @return the heard responses from the person
+     */
+    public String[] getHeard() {
+        
+        return heard;
+    }
+    
+    /**
+     * Method returns the liked responses from the person
+     * @return the liked responses from the person
+     */
+    public String[] getLiked() {
+        
+        return liked;
+    }
+    
     /**
      * Method gets the major of the Person
      * 
@@ -78,7 +100,7 @@ public class Person {
                 break;
 
             case MATH:
-                personString.append("Math");
+                personString.append("Math or CMDA");
                 break;
 
             case ENGINEERING:
@@ -86,7 +108,7 @@ public class Person {
                 break;
 
             default:
-                personString.append("Other Non-Engineering");
+                personString.append("Other");
                 break;
         }
         personString.append(", Hobby: ");
@@ -94,19 +116,19 @@ public class Person {
         switch(this.getHobby()) {
         
             case READING:
-                personString.append("Reading");
+                personString.append("reading");
                 break;
 
             case SPORTS:
-                personString.append("Sports");
+                personString.append("sports");
                 break;
 
             case MUSIC:
-                personString.append("Music");
+                personString.append("music");
                 break;
 
             default:
-                personString.append("Art");
+                personString.append("art");
                 break;
         }
         personString.append(", Region: ");
@@ -122,11 +144,12 @@ public class Person {
                 break;
 
             case USOTHER:
-                personString.append("Other US region");
+                personString.append("United States (other than Southeast or "
+                        + "Northwest)");
                 break;
 
             default:
-                personString.append("Outside of the US");
+                personString.append("Outside of United States");
                 break;
         }
         personString.append("]");
