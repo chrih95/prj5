@@ -3,7 +3,7 @@ package prj5;
 /**
  * Tests the compare method in the CompareArtist class
  * @author Christian Hawkes
- *
+ * @version (4.16.16)
  */
 public class CompareArtistTest extends student.TestCase {
     /**
@@ -35,7 +35,7 @@ public class CompareArtistTest extends student.TestCase {
      * return an int less than 0.
      */
     public void testCompareLessThan() {
-        assertTrue(comparer.compare(songHello, songYeah) < 0);
+        assertEquals(-20, comparer.compare(songHello, songYeah));
     }
     
     /**
@@ -43,7 +43,7 @@ public class CompareArtistTest extends student.TestCase {
      * return an int greater than 0.
      */
     public void testCompareMoreThan() {
-        assertTrue(comparer.compare(songYeah, songHello) > 0);
+        assertEquals(20, comparer.compare(songYeah, songHello));
     }
     
     /**
