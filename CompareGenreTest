@@ -53,5 +53,13 @@ public class CompareGenreTest extends student.TestCase {
     public void testCompareEqual() {
         assertEquals(0, comparer.compare(songHello, songHello));
     }
+    
+    /**
+    * Tests the compare method with a song and an int
+    */
+    public void testCompareNotSame() {
+        int numSong = 4;
+        assertEquals(0, comparer.compare(songHello, numSong));
+    }
 
 }
