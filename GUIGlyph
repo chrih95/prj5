@@ -1,19 +1,35 @@
 package prj5;
 
 import CS2114.SquareShape;
+import CS2114.Window;
 import java.awt.Color;
 
 /**
-* Creates a new glyph.
-* @author Christian Hawkes
-*/
-public SquareShape glyph;
+ * 
+ * @author Chandler Manns
+ *
+ */
+public class GUIGlyph {
+    
+    public static final int BAR_WIDTH = 10;
+    
+    /**
+     * Creates a new glyph.
+     * 
+     * @author Christian Hawkes
+     */
+    public GUIGlyph(Window window, int position, Song song) {
+        
+        
+    }
 
     /**
-    * Creates and returns a new square shape.
-    * @return The new glyph
-    */
+     * Creates and returns a new square shape.
+     * 
+     * @return The new glyph
+     */
     public SquareShape buildGlyph() {
         glyph = new SquareShape(150, 50, 150, Color.WHITE);
         return glyph;
     }
+}
