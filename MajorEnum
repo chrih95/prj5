@@ -5,6 +5,16 @@ package prj5;
 * representing the major of each person.
 */
 public enum MajorEnum {
-    COMPSCI, MATH, ENGINEERING, OTHER;
+    COMPSCI(0), MATH(1), ENGINEERING(2), OTHER(3);
 
+    private final int arrayIndex;
+
+    public int getArrayIndex() {
+
+        return this.arrayIndex;
+    }
+
+    private MajorEnum(int arrayIndex) {
+        this.arrayIndex = arrayIndex;
+    }
 }
