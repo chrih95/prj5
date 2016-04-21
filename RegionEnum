@@ -5,6 +5,17 @@ package prj5;
 * representing the region from which each person is from.
 */
 public enum RegionEnum {
-    NORTHEAST, SOUTHEAST, USOTHER, OTHER;
+    
+    NORTHEAST(0), SOUTHEAST(1), USOTHER(2), OTHER(3);
 
+    private final int arrayIndex;
+
+    public int getArrayIndex() {
+
+        return this.arrayIndex;
+    }
+
+    private RegionEnum(int arrayIndex) {
+        this.arrayIndex = arrayIndex;
+    }
 }
