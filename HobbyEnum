@@ -1,5 +1,25 @@
 package prj5;
 
+/**
+* An Enumeration with READING, SPROTS, MUSIC, and ART representing
+* the hobby of each person.
+*/
+public enum HobbyEnum {
+    READING(0), SPORTS(2), MUSIC(3), ART(1);
+
+
+    private final int arrayIndex;
+
+    public int getArrayIndex() {
+
+        return this.arrayIndex;
+    }
+
+    private HobbyEnum(int arrayIndex) {
+        this.arrayIndex = arrayIndex;
+    }
+
+}
 public enum HobbyEnum {
     READING(0), SPORTS(2), MUSIC(3), ART(1);
 
