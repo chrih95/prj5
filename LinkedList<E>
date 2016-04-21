@@ -1,37 +1,42 @@
 package prj5;
 
-import java.util.Comparator; //should take this out
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 import list.ListInterface;
+
+
 /**
  * This class implements a linked list data structure
- * @author Owner
+ * 
+ * @author Alice Choi (chalice)
  * @version (4.16.16)
  * @param <E>
+ *            The generic variable used
  */
 public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
 
-    private Node<E> firstNode;
+    private Node firstNode;
     private int numberOfEntries;
 
     /**
-    * Instantiates the first node and sets the numberOfEntries to 0
-    */
+     * Instantiates the first node and sets the numberOfEntries to 0
+     */
     public LinkedList() {
         firstNode = null;
         numberOfEntries = 0;
     }
 
     /**
-    * Creates a new node with the given data and
-    * adds the new node to the front of the list.
-    * @param newEntry The item to add
-    */
+     * Creates a new node with the given data and adds the new node to the front
+     * of the list.
+     * 
+     * @param newEntry
+     *            The item to add
+     */
     @Override
     public void add(E newEntry) {
-        Node<E> newNode = new Node<E>(newEntry);
+        Node newNode = new Node(newEntry);
         if (firstNode == null) {
             firstNode = newNode;
         }
@@ -41,25 +46,42 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         numberOfEntries++;
     }
-    
+
     /**
-    * Clears the list
-    */
+     * Adds the node at the given position
+     * 
+     * @param entry
+     *            The entry to add the item
+     * @param item
+     *            The new item to add
+     * @throws UnsupportedOperationException
+     *             because method is not used
+     */
+    @Override
+    public void add(int entry, E item) {
+
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Clears the list
+     */
     @Override
     public void clear() {
         firstNode = null;
         numberOfEntries = 0;
     }
-    
+
     /**
-    * Returns true if the list contains a node
-    * with the given data.
-    * @param findEntry The data to be found
-    * @return True if the node was found
-    * @return true if the item is in the list
-    */
+     * Returns true if the list contains a node with the given data.
+     * 
+     * @param findEntry
+     *            The data to be found
+     * @return true if the item is in the list
+     */
     @Override
     public boolean contains(E findEntry) {
+        
         Iterator<E> iterator = this.iterator();
         if (findEntry != null && firstNode != null) {
             if (firstNode.getData().equals(findEntry)) {
@@ -74,9 +96,23 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
 
         return false;
     }
+
+    /**
+     * Method gets the entry at a given position
+     * 
+     * @return the entry at a given position
+     * @throws IndexOutOfBoundsException
+     *             if the index passed in is out of the bounds of the LinkedList
+     */
     @Override
     public E getEntry(int position) {
-        Node<E> currNode = firstNode;
+
+        if ((position > getLength() - 1) || position < 0) {
+
+            throw new IndexOutOfBoundsException("Index is out of bounds");
+        }
+        
+        Node currNode = firstNode;
         if (position == 0) {
             return firstNode.getData();
         }
@@ -85,23 +121,45 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         return currNode.getData();
     }
+
+    /**
+     * Method returns the length of the LinkedList
+     * 
+     * @return the length of the LinkedList
+     */
     @Override
     public int getLength() {
         return numberOfEntries;
     }
+
+    /**
+     * Method checks whether the LinkedList is empty or not
+     * 
+     * @return true if the LinkedList is empty, false if it is not
+     */
     @Override
     public boolean isEmpty() {
-        return firstNode == null && numberOfEntries == 0;
+        return firstNode == null;
     }
-    
+
     /**
      * Method removes a node from a specified position
-     * @param position    the specified position
+     * 
+     * @param position
+     *            the specified position
      * @return the data from the removed node
+     * @throws IndexOutOfBoundsException
+     *             if the index passed in is out of the bounds of the LinkedList
      */
     @Override
     public E remove(int position) {
-        Node<E> currNode = firstNode;
+        
+        if ((position > getLength() - 1) || position < 0) {
+
+            throw new IndexOutOfBoundsException("Index is out of bounds");
+        }
+        
+        Node currNode = firstNode;
         E removedEntry = currNode.getData();
         if ((this.getLength() == 1) && position == 0) {
             // E removedEntry = currNode.getData();
@@ -126,11 +184,16 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
         return removedEntry;
     }
-    
+
+    /**
+     * Method replace an entry at a given position
+     * 
+     * @return the entry that was replaced
+     */
     @Override
     public E replace(int position, E replacementEntry) {
 
-        Node<E> currNode = firstNode;
+        Node currNode = firstNode;
         if (position == 0) {
             E firstOriginalEntry = firstNode.getData();
             firstNode.setData(replacementEntry);
@@ -143,77 +206,88 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         currNode.setData(replacementEntry);
         return replacedEntry;
     }
+
+    /**
+     * Method returns the array representation of the LinkedList
+     * @return the array representation of the LinkedList
+     */
     @Override
     public Object[] toArray() {
         Object[] array = new Object[numberOfEntries];
-        Node<E> currNode = firstNode;
+        Node currNode = firstNode;
         for (int i = 0; i < numberOfEntries; i++) {
             array[i] = currNode.getData();
             currNode = currNode.getNextNode();
         }
         return array;
     }
-    
+
     /**
-    * Sorts the list according to the comparator passed in
-    * @param comparator Used to compare the items in the list
-    public void insertionSort(Comparator<? super Object> comparator) {
+     * Sorts the list according to the comparator passed in
+     * 
+     * @param comparator
+     *            Used to compare the items in the list
+     */
+    public void insertionSort(Comparator<? super E> comparator) {
 
         for (int i = 1; i < numberOfEntries; i++) { // Insert i'th record
-            for (int j = i; (j > 0) && 
-                (comparator.compare(getEntry(j), getEntry(j - 1)) < 0); j--) {
+            for (int j = i; (j > 0) && (comparator.compare(getEntry(j),
+                    getEntry(j - 1)) < 0); j--) {
                 swap(j, j - 1);
             }
         }
     }
-    
+
     /**
-    * Swaps the indeces passed in
-    */
-    @SuppressWarnings("unchecked")
+     * Swaps at the indeces passed in
+     */
     private void swap(int j, int i) {
-        Object aAtIndexJ = getEntry(j);
+        E aAtIndexJ = getEntry(j);
         replace(j, getEntry(i));
-        replace(i, (E) aAtIndexJ);
+        replace(i, aAtIndexJ);
     }
 
     /**
-    * Returns a new LinkedListIterator()
-    * @return a new iterator
-    */
+     * Returns a new LinkedListIterator()
+     * 
+     * @return a new iterator
+     */
+    @Override
     public Iterator<E> iterator() {
         return new LinkedListIterator();
     }
-//----------------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------------
     /**
+     * The Node class
      * 
-     * @author <chalice>
-     *
-     * @param <E> the type of element
+     * @author Alice Choi (chalice)
+     * @version (4.16.16)
      */
-    @SuppressWarnings("hiding")
-    private class Node<E> {
+    private class Node {
 
         // The data element stored in the node.
         private E data;
 
         // The next node in the sequence.
-        private Node<E> next;
+        private Node next;
 
         /**
          * Creates a new node with the given data
          *
-         * @param d
+         * @param data
          *            the data to put inside the node
          */
-        public Node(E d) {
-            data = d;
+        public Node(E data) {
+            this.data = data;
         }
 
         /**
-        * Sets the data of the current node
-        * @param replacementEntry The new data
-        */
+         * Sets the data of the current node
+         * 
+         * @param replacementEntry
+         *            The new data
+         */
         public void setData(E replacementEntry) {
             data = replacementEntry;
         }
@@ -221,11 +295,11 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         /**
          * Sets the node after this node
          *
-         * @param n
+         * @param nextNode
          *            the node after this one
          */
-        public void setNextNode(Node<E> n) {
-            next = n;
+        public void setNextNode(Node nextNode) {
+            next = nextNode;
         }
 
         /**
@@ -233,7 +307,7 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
          *
          * @return the next node
          */
-        public Node<E> getNextNode() {
+        public Node getNextNode() {
             return next;
         }
 
@@ -246,36 +320,41 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
             return data;
         }
     }
-//----------------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------------
     /**
+     * The inner iterator class
      * 
-     * @author <chalice>
-     * Inner iterator class
-     *
+     * @author Alice Choi (chalice)
+     * @version (4.16.16)
      */
     private class LinkedListIterator implements Iterator<E> {
 
         private int index;
 
         /**
-        * Sets the index to 0
-        */
+         * Sets the index to 0
+         */
         public LinkedListIterator() {
             index = 0;
         }
-        
+
         /**
-        * Returns true if the node has a next
-        * @return true if node has next
-        */
+         * Returns true if the node has a next
+         * 
+         * @return true if node has next
+         */
+        @Override
         public boolean hasNext() {
             return index < getLength();
         }
-        
+
         /**
-        * Returns the current data and increments to next node
-        * @return The current data
-        */
+         * Returns the current data and increments to next node
+         * 
+         * @return The current data
+         */
+        @Override
         public E next() {
             if (hasNext()) {
                 E nextEntry = getEntry(index);
@@ -288,5 +367,4 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
             }
         }
     }
-
 }
