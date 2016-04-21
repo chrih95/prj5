@@ -1,10 +1,10 @@
 package prj5;
 
 /**
+ * LinkedListTest tests the LinkedList class
  * 
  * @author Christian Hawkes
  * @version (4.16.16)
- *
  */
 public class LinkedListTest extends student.TestCase {
     
@@ -13,6 +13,7 @@ public class LinkedListTest extends student.TestCase {
     /**
      * Sets it up
      */
+    @Override
     public void setUp() {
         list = new LinkedList<String>();
     
@@ -62,7 +63,7 @@ public class LinkedListTest extends student.TestCase {
         assertEquals(0, list.getLength());
         list.add("bob");
         assertEquals(1, list.getLength());
-        assertEquals("bob", list.remove(1));
+        assertEquals("bob", list.remove(0));
         assertEquals(0, list.getLength());
         list.add("bob");
         list.add("bob");
@@ -71,6 +72,39 @@ public class LinkedListTest extends student.TestCase {
         assertEquals("bob", list.remove(2));
         assertEquals(2, list.getLength());
         
+        // index greater than length
+        Exception thrown = null;
+        try {
+            
+            list.remove(5);
+        } 
+        catch (Exception exception) {
+
+            thrown = exception;
+        }
+
+        // checks whether an Exception was actually thrown
+        assertNotNull(thrown);
+
+        // checks whether the right type of Exception was thrown
+        assertTrue(thrown instanceof IndexOutOfBoundsException);
+        
+        // index less than 0
+        thrown = null;
+        try {
+            
+            list.remove(-1);
+        } 
+        catch (Exception exception) {
+
+            thrown = exception;
+        }
+
+        // checks whether an Exception was actually thrown
+        assertNotNull(thrown);
+
+        // checks whether the right type of Exception was thrown
+        assertTrue(thrown instanceof IndexOutOfBoundsException);
     }
     
     /**
@@ -87,6 +121,39 @@ public class LinkedListTest extends student.TestCase {
         assertEquals("lilly", list.getEntry(2));
         assertEquals("bob", list.getEntry(4));
         
+        // index greater than length
+        Exception thrown = null;
+        try {
+            
+            list.getEntry(5);
+        } 
+        catch (Exception exception) {
+
+            thrown = exception;
+        }
+
+        // checks whether an Exception was actually thrown
+        assertNotNull(thrown);
+
+        // checks whether the right type of Exception was thrown
+        assertTrue(thrown instanceof IndexOutOfBoundsException);
+        
+        // index less than 0
+        thrown = null;
+        try {
+            
+            list.getEntry(-1);
+        } 
+        catch (Exception exception) {
+
+            thrown = exception;
+        }
+
+        // checks whether an Exception was actually thrown
+        assertNotNull(thrown);
+
+        // checks whether the right type of Exception was thrown
+        assertTrue(thrown instanceof IndexOutOfBoundsException);
     }
     
     /**
