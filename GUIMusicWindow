@@ -31,6 +31,11 @@ public class GUIMusicWindow {
     private GUIGlyph glyph;
     private String represent;
     private int index;
+    private Shape firstBar;
+    private Shape secondBar;
+    private Shape thirdBar;
+    private Shape fourthBar;
+    private Shape divider;
     
     /**
      * Instantiates all the buttons, builds the glyphs, 
@@ -83,6 +88,22 @@ public class GUIMusicWindow {
         index = 0;
         songList = list.getSongList();
         personList = list.getPersonList();
+        
+        firstBar = new Shape(190, 80, 80, 15, Color.MAGENTA);
+        secondBar = new Shape(200, 95, 125, 15, Color.BLUE);
+        thirdBar = new Shape(180, 110, 100, 15, Color.ORANGE);
+        fourthBar = new Shape(170, 125, 100, 15, Color.GREEN);
+        divider = new Shape(220, 80, 5, 60, Color.BLACK);
+        window.addShape(firstBar);
+        window.moveToFront(firstBar);
+        window.addShape(secondBar);
+        window.moveToFront(secondBar);
+        window.addShape(thirdBar);
+        window.moveToFront(thirdBar);
+        window.addShape(fourthBar);
+        window.moveToFront(fourthBar);
+        window.addShape(divider);
+        window.moveToFront(divider);
     }
     
     /**
