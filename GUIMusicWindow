@@ -2,7 +2,6 @@ package prj5;
 
 import java.awt.Color;
 
-
 import CS2114.Button;
 import CS2114.Shape;
 import CS2114.Window;
@@ -28,13 +27,15 @@ public class GUIMusicWindow {
     private Button quitButton;
     private Window window;
     private DataList list;
-    private Glyph glyph;
+    private GUIGlyph glyph;
     private TextShape songTitle;
     private Shape firstBar;
     private Shape secondBar;
     private Shape thirdBar;
     private Shape fourthBar;
     private Shape divider;
+    private String represent;
+    private int index;
     
     /**
      * Instantiates all the buttons, builds the glyphs, 
@@ -54,7 +55,6 @@ public class GUIMusicWindow {
         representMajorButton = new Button("Represent Major");
         representRegionButton = new Button("Represent Region");
         quitButton = new Button("Quit");
-        glyph = new Glyph();
         firstBar = new Shape(160, 80, 150, 15, Color.MAGENTA);
         secondBar = new Shape(200, 95, 125, 15, Color.BLUE);
         thirdBar = new Shape(180, 110, 100, 15, Color.ORANGE);
@@ -75,7 +75,6 @@ public class GUIMusicWindow {
         window.addButton(representRegionButton, WindowSide.SOUTH);
         window.addButton(quitButton, WindowSide.SOUTH);
         makeLegend();
-        window.addShape(glyph.buildGlyph());
         songTitle = new TextShape(190, 60, "Hello by Adele");
         songTitle.setBackgroundColor(Color.WHITE);
         window.addShape(songTitle);
@@ -103,7 +102,8 @@ public class GUIMusicWindow {
         representHobbyButton.onClick(this, "clickedRepresentation");
         representMajorButton.onClick(this, "clickedRepresentation");
         representRegionButton.onClick(this, "clickedRepresentation");
-
+        
+        window.setSize(1020, 770);
     }
     
     /**
@@ -123,40 +123,20 @@ public class GUIMusicWindow {
         int y = window.getGraphPanelHeight() + 110;
         Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
         legend.setForegroundColor(Color.BLACK);
-        TextShape legendText = new TextShape(x + 30, y + 5,"Hobby Legend");
-        legendText.setBackgroundColor(Color.WHITE);
-        TextShape firstText = new TextShape(x + 60, y + 30,"Read");
-        TextShape secondText = new TextShape(x + 60, y + 60,"Art");
-        TextShape thirdText = new TextShape(x + 60, y + 90,"Sports");
-        TextShape fourthText = new TextShape(x + 60, y + 120,"Music");
+        
+        legendRepresent(x, y);
+        
         TextShape songTitle = new TextShape(x + 50, y + 140,"Song Title");
         TextShape heardText = new TextShape(x + 20, y + 180,"Heard");
         TextShape likedText = new TextShape(x + 100, y + 180,"Liked");
         Shape legendDivider = new Shape(x + 80, y + 160, 5, 60, Color.BLACK);
-        firstText.setBackgroundColor(Color.WHITE);
-        firstText.setForegroundColor(Color.MAGENTA);
-        secondText.setBackgroundColor(Color.WHITE);
-        secondText.setForegroundColor(Color.BLUE);
-        thirdText.setBackgroundColor(Color.WHITE);
-        thirdText.setForegroundColor(Color.ORANGE);
-        fourthText.setBackgroundColor(Color.WHITE);
-        fourthText.setForegroundColor(Color.GREEN);
+        
         songTitle.setBackgroundColor(Color.WHITE);
         heardText.setBackgroundColor(Color.WHITE);
         likedText.setBackgroundColor(Color.WHITE);
         
-        
         window.addShape(legend);
-        window.addShape(legendText);
-        window.moveToFront(legendText);
-        window.addShape(firstText);
-        window.moveToFront(firstText);
-        window.addShape(secondText);
-        window.moveToFront(secondText);
-        window.addShape(thirdText);
-        window.moveToFront(thirdText);
-        window.addShape(fourthText);
-        window.moveToFront(fourthText);
+        window.moveToBack(legend);
         window.addShape(songTitle);
         window.moveToFront(songTitle);
         window.addShape(heardText);
@@ -176,6 +156,9 @@ public class GUIMusicWindow {
     public void clickedCategory(Button button) {
         if (button.equals(sortByArtistButton)) {
             list.sortByArtist();
+            window.removeAllShapes();
+            makeLegend();
+            
         }
         
         else if (button.equals(sortByGenreButton)) {
@@ -187,7 +170,103 @@ public class GUIMusicWindow {
         }
         
         else if (button.equals(sortByYearButton)) {
-            llist.sortByYear();
+            list.sortByYear();
+        }
+    }
+    
+    private void legendRepresent(int x, int y) {
+        
+        if (represent.equals("H")) {
+            
+            TextShape legendText = new TextShape(x + 30, y + 5,"Hobby Legend");
+            TextShape firstText = new TextShape(x + 60, y + 30,"Read");
+            TextShape secondText = new TextShape(x + 60, y + 60,"Art");
+            TextShape thirdText = new TextShape(x + 60, y + 90,"Sports");
+            TextShape fourthText = new TextShape(x + 60, y + 120,"Music");
+            
+            legendText.setBackgroundColor(Color.WHITE);
+            firstText.setBackgroundColor(Color.WHITE);
+            firstText.setForegroundColor(Color.MAGENTA);
+            secondText.setBackgroundColor(Color.WHITE);
+            secondText.setForegroundColor(Color.BLUE);
+            thirdText.setBackgroundColor(Color.WHITE);
+            thirdText.setForegroundColor(Color.ORANGE);
+            fourthText.setBackgroundColor(Color.WHITE);
+            fourthText.setForegroundColor(Color.GREEN);
+            
+            window.addShape(legendText);
+            window.moveToFront(legendText);
+            window.addShape(firstText);
+            window.moveToFront(firstText);
+            window.addShape(secondText);
+            window.moveToFront(secondText);
+            window.addShape(thirdText);
+            window.moveToFront(thirdText);
+            window.addShape(fourthText);
+            window.moveToFront(fourthText);
+        }
+        
+        else if (represent.equals("M")) {
+            
+            TextShape legendText = new TextShape(x + 30, y + 5,"Major Legend");
+            TextShape firstText = new TextShape(x + 60, y + 30,"Comp Sci");
+            TextShape secondText = new TextShape(x + 60, y + 60,"Math");
+            TextShape thirdText = new TextShape(x + 60, y + 90,"Enge Other");
+            TextShape fourthText = new TextShape(x + 60, y + 120,"Other");
+            
+            legendText.setBackgroundColor(Color.WHITE);
+            firstText.setBackgroundColor(Color.WHITE);
+            firstText.setForegroundColor(Color.MAGENTA);
+            secondText.setBackgroundColor(Color.WHITE);
+            secondText.setForegroundColor(Color.BLUE);
+            thirdText.setBackgroundColor(Color.WHITE);
+            thirdText.setForegroundColor(Color.ORANGE);
+            fourthText.setBackgroundColor(Color.WHITE);
+            fourthText.setForegroundColor(Color.GREEN);
+            
+            window.addShape(legendText);
+            window.moveToFront(legendText);
+            window.addShape(firstText);
+            window.moveToFront(firstText);
+            window.addShape(secondText);
+            window.moveToFront(secondText);
+            window.addShape(thirdText);
+            window.moveToFront(thirdText);
+            window.addShape(fourthText);
+            window.moveToFront(fourthText);
+        }
+
+        else if (represent.equals("R")) {
+            
+            TextShape legendText = new TextShape(x + 30, y + 5,"Major Legend");
+            TextShape firstText = new TextShape(x + 60, y + 30,"Comp Sci");
+            TextShape secondText = new TextShape(x + 60, y + 60,"Math");
+            TextShape thirdText = new TextShape(x + 60, y + 90,"Enge Other");
+            TextShape fourthText = new TextShape(x + 60, y + 120,"Other");
+            
+            legendText.setBackgroundColor(Color.WHITE);
+            firstText.setBackgroundColor(Color.WHITE);
+            firstText.setForegroundColor(Color.MAGENTA);
+            secondText.setBackgroundColor(Color.WHITE);
+            secondText.setForegroundColor(Color.BLUE);
+            thirdText.setBackgroundColor(Color.WHITE);
+            thirdText.setForegroundColor(Color.ORANGE);
+            fourthText.setBackgroundColor(Color.WHITE);
+            fourthText.setForegroundColor(Color.GREEN);
+            
+            window.addShape(legendText);
+            window.moveToFront(legendText);
+            window.addShape(firstText);
+            window.moveToFront(firstText);
+            window.addShape(secondText);
+            window.moveToFront(secondText);
+            window.addShape(thirdText);
+            window.moveToFront(thirdText);
+            window.addShape(fourthText);
+            window.moveToFront(fourthText);
+        }
+        else {
+            throw new IllegalStateException();
         }
     }
     
@@ -201,16 +280,24 @@ public class GUIMusicWindow {
     public void clickedRepresentation(Button button) {
         if (button.equals(representHobbyButton)) {
             
+            represent = "H";
+            window.removeAllShapes();
         }
         
         else if (button.equals(representMajorButton)) {
             
+            represent = "M";
+            window.removeAllShapes();
         }
         
         else if (button.equals(representRegionButton)) {
             
+            represent = "R";
+            window.removeAllShapes();
         }
     }
+    
+    
     
     /**
      * Navigates between pages of songs whenever the
