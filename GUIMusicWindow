@@ -1,7 +1,6 @@
 package prj5;
 
 import java.awt.Color;
-
 import CS2114.Button;
 import CS2114.Shape;
 import CS2114.Window;
@@ -28,12 +27,6 @@ public class GUIMusicWindow {
     private Window window;
     private DataList list;
     private GUIGlyph glyph;
-    private TextShape songTitle;
-    private Shape firstBar;
-    private Shape secondBar;
-    private Shape thirdBar;
-    private Shape fourthBar;
-    private Shape divider;
     private String represent;
     private int index;
     
@@ -43,6 +36,7 @@ public class GUIMusicWindow {
      * @param list The data list
      */
     public GUIMusicWindow(DataList list) {
+        
         window = new Window("Project 5");
         
         previousButton = new Button("<-- Prev");
@@ -55,11 +49,7 @@ public class GUIMusicWindow {
         representMajorButton = new Button("Represent Major");
         representRegionButton = new Button("Represent Region");
         quitButton = new Button("Quit");
-        firstBar = new Shape(160, 80, 150, 15, Color.MAGENTA);
-        secondBar = new Shape(200, 95, 125, 15, Color.BLUE);
-        thirdBar = new Shape(180, 110, 100, 15, Color.ORANGE);
-        fourthBar = new Shape(170, 125, 100, 15, Color.GREEN);
-        divider = new Shape(220, 80, 5, 60, Color.BLACK);
+        
         this.list = list;
         
         window.addButton(previousButton, WindowSide.NORTH);
@@ -74,23 +64,6 @@ public class GUIMusicWindow {
         window.addButton(representMajorButton, WindowSide.SOUTH);
         window.addButton(representRegionButton, WindowSide.SOUTH);
         window.addButton(quitButton, WindowSide.SOUTH);
-        makeLegend();
-        songTitle = new TextShape(190, 60, "Hello by Adele");
-        songTitle.setBackgroundColor(Color.WHITE);
-        window.addShape(songTitle);
-        window.moveToFront(songTitle);
-        
-        
-        window.addShape(firstBar);
-        window.moveToFront(firstBar);
-        window.addShape(secondBar);
-        window.moveToFront(secondBar);
-        window.addShape(thirdBar);
-        window.moveToFront(thirdBar);
-        window.addShape(fourthBar);
-        window.moveToFront(fourthBar);
-        window.addShape(divider);
-        window.moveToFront(divider);
         
         quitButton.onClick(this, "clickedQuit");
         previousButton.onClick(this, "clickedMove");
@@ -104,6 +77,8 @@ public class GUIMusicWindow {
         representRegionButton.onClick(this, "clickedRepresentation");
         
         window.setSize(1020, 770);
+        represent = "";
+        index = 0;
     }
     
     /**
@@ -119,8 +94,8 @@ public class GUIMusicWindow {
      * that shows how the survey results are currently being represented.
      */
     public void makeLegend() {
-        int x = window.getGraphPanelWidth() + 110;
-        int y = window.getGraphPanelHeight() + 110;
+        int x = (window.getGraphPanelWidth()/2) + 110;
+        int y = (window.getGraphPanelHeight()/2) + 110;
         Shape legend = new Shape(x, y, 150, 250, Color.WHITE);
         legend.setForegroundColor(Color.BLACK);
         
@@ -163,6 +138,7 @@ public class GUIMusicWindow {
         
         else if (button.equals(sortByGenreButton)) {
             list.sortByGenre();
+            
         }
         
         else if (button.equals(sortByTitleButton)) {
@@ -238,10 +214,10 @@ public class GUIMusicWindow {
 
         else if (represent.equals("R")) {
             
-            TextShape legendText = new TextShape(x + 30, y + 5,"Major Legend");
-            TextShape firstText = new TextShape(x + 60, y + 30,"Comp Sci");
-            TextShape secondText = new TextShape(x + 60, y + 60,"Math");
-            TextShape thirdText = new TextShape(x + 60, y + 90,"Enge Other");
+            TextShape legendText = new TextShape(x + 30, y + 5,"Region Legend");
+            TextShape firstText = new TextShape(x + 60, y + 30,"Northeast");
+            TextShape secondText = new TextShape(x + 60, y + 60,"Southeast");
+            TextShape thirdText = new TextShape(x + 60, y + 90,"US Other");
             TextShape fourthText = new TextShape(x + 60, y + 120,"Other");
             
             legendText.setBackgroundColor(Color.WHITE);
@@ -278,22 +254,40 @@ public class GUIMusicWindow {
      * or representRegionButton.
      */
     public void clickedRepresentation(Button button) {
+        
+        LinkedList<Song> songList = DataList.getSongList();
+        
         if (button.equals(representHobbyButton)) {
             
             represent = "H";
             window.removeAllShapes();
+            makeLegend();
+            for (int i = 0; i < songList.getLength(); i++) {
+                
+                songList.getEntry(i).representHobby();
+            }
         }
         
         else if (button.equals(representMajorButton)) {
             
             represent = "M";
             window.removeAllShapes();
+            makeLegend();
+            for (int i = 0; i < songList.getLength(); i++) {
+                
+                songList.getEntry(i).representMajor();
+            }
         }
         
         else if (button.equals(representRegionButton)) {
             
             represent = "R";
             window.removeAllShapes();
+            makeLegend();
+            for (int i = 0; i < songList.getLength(); i++) {
+                
+                songList.getEntry(i).representRegion();
+            }
         }
     }
     
