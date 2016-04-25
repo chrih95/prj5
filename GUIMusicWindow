@@ -26,6 +26,8 @@ public class GUIMusicWindow {
     private Button quitButton;
     private Window window;
     private DataList list;
+    private LinkedList<Song> songList;
+    private LinkedList<Person> personList;
     private GUIGlyph glyph;
     private String represent;
     private int index;
@@ -79,6 +81,8 @@ public class GUIMusicWindow {
         window.setSize(1020, 770);
         represent = "";
         index = 0;
+        songList = list.getSongList();
+        personList = list.getPersonList();
     }
     
     /**
@@ -255,8 +259,6 @@ public class GUIMusicWindow {
      */
     public void clickedRepresentation(Button button) {
         
-        LinkedList<Song> songList = DataList.getSongList();
-        
         if (button.equals(representHobbyButton)) {
             
             represent = "H";
@@ -264,7 +266,7 @@ public class GUIMusicWindow {
             makeLegend();
             for (int i = 0; i < songList.getLength(); i++) {
                 
-                songList.getEntry(i).representHobby();
+                songList.getEntry(i).representHobby();   //Not sure if this saves changes in songlist or not
             }
         }
         
