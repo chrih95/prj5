@@ -289,6 +289,16 @@ public class GUIMusicWindow {
                 
                 songList.getEntry(i).representHobby();   //Not sure if this saves changes in songlist or not
             }
+            int xPos = __starting_point__; //input real value later
+            int yPos = __starting_point__; //input real value later
+            for (int i = 0; i < 3; i ++) {
+                yPos = yPos + ____; //input position increment value later
+                for (int j = 0; j < 3; j ++) {
+                    xPos = xPos + ____; //input position increment value later
+                    glyph.buildGlyph(xPos, yPos, songList.getEntry(index));
+                    index++;
+                }
+            }
         }
         
         else if (button.equals(representMajorButton)) {
@@ -300,6 +310,16 @@ public class GUIMusicWindow {
                 
                 songList.getEntry(i).representMajor();
             }
+            int xPos = __starting_point__; //input real value later
+            int yPos = __starting_point__; //input real value later
+            for (int i = 0; i < 3; i ++) {
+                yPos = yPos + ____; //input position increment value later
+                for (int j = 0; j < 3; j ++) {
+                    xPos = xPos + ____; //input position increment value later
+                    glyph.buildGlyph(xPos, yPos, songList.getEntry(index));
+                    index++;
+                }
+            }
         }
         
         else if (button.equals(representRegionButton)) {
@@ -310,6 +330,16 @@ public class GUIMusicWindow {
             for (int i = 0; i < songList.getLength(); i++) {
                 
                 songList.getEntry(i).representRegion();
+            }
+            int xPos = __starting_point__; //input real value later
+            int yPos = __starting_point__; //input real value later
+            for (int i = 0; i < 3; i ++) {
+                yPos = yPos + ____; //input position increment value later
+                for (int j = 0; j < 3; j ++) {
+                    xPos = xPos + ____; //input position increment value later
+                    glyph.buildGlyph(xPos, yPos, songList.getEntry(index));
+                    index++;
+                }
             }
         }
     }
@@ -324,10 +354,11 @@ public class GUIMusicWindow {
     public void clickedMove(Button button) {
         if (button.equals(nextButton)) {
             previousButton.enable();
+            index+=9;
         }
         
         else if (button.equals(previousButton)) {
-            
+            index-=18;
         }
     }
     
