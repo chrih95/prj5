@@ -1,6 +1,7 @@
 package prj5;
 
-import CS2114.SquareShape;
+import CS2114.Shape;
+import CS2114.TextShape;
 import CS2114.Window;
 import java.awt.Color;
 
@@ -10,8 +11,7 @@ import java.awt.Color;
  *
  */
 public class GUIGlyph {
-    
-    public static final int BAR_WIDTH = 100;
+
     private TextShape songTitle;
     private TextShape songArtist;
     private Shape firstBarHeard;
@@ -24,7 +24,7 @@ public class GUIGlyph {
     private Shape fourthBarLiked;
     private Shape divider;
     private Window window;
-    
+
     /**
      * Creates a new glyph.
      * 
@@ -32,35 +32,46 @@ public class GUIGlyph {
      */
     public GUIGlyph(Window window, int xPosition, int yPosition, Song song) {
         this.window = window;
-        
-        songTitle = new TextShape(xPosition - (song.getTitle().length()*4), yPosition, song.getTitle());
+
+        songTitle = new TextShape(xPosition, yPosition, song.getTitle());
+        songTitle.setX(xPosition - (songTitle.getWidth() / 2));
+        songTitle.setY(yPosition);
         yPosition = yPosition + songTitle.getHeight();
-        songArtist = new TextShape(xPosition - (song.getArtist().length()*4), yPosition, "by " + song.getArtist());
+        songArtist = new TextShape(xPosition, yPosition,
+                "by " + song.getArtist());
+        songArtist.setX(xPosition - (songArtist.getWidth() / 2));
+        songArtist.setY(yPosition);
         yPosition = yPosition + songArtist.getHeight();
         divider = new Shape(xPosition, yPosition, 5, 60, Color.BLACK);
         songTitle.setBackgroundColor(Color.WHITE);
         songArtist.setBackgroundColor(Color.WHITE);
-        firstBarHeard = new Shape(xPosition - (song.getHeard()[0]), yPosition,song.getHeard()[0] , 15, Color.MAGENTA);
-        firstBarLiked = new Shape(xPosition + 5, yPosition,song.getLiked()[0] , 15, Color.MAGENTA);
+        firstBarHeard = new Shape(xPosition - (song.getHeard()[0]), yPosition,
+                song.getHeard()[0], 15, Color.MAGENTA);
+        firstBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[0],
+                15, Color.MAGENTA);
         yPosition = yPosition + 15;
-        secondBarHeard = new Shape(xPosition - (song.getHeard()[1]), yPosition, song.getHeard()[1], 15, Color.BLUE);
-        secondBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[1], 15, Color.BLUE);
+        secondBarHeard = new Shape(xPosition - (song.getHeard()[1]), yPosition,
+                song.getHeard()[1], 15, Color.BLUE);
+        secondBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[1],
+                15, Color.BLUE);
         yPosition = yPosition + 15;
-        thirdBarHeard = new Shape(xPosition - song.getHeard()[2], yPosition, song.getHeard()[2], 15, Color.ORANGE);
-        thirdBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[2], 15, Color.ORANGE);
+        thirdBarHeard = new Shape(xPosition - song.getHeard()[2], yPosition,
+                song.getHeard()[2], 15, Color.ORANGE);
+        thirdBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[2],
+                15, Color.ORANGE);
         yPosition = yPosition + 15;
-        fourthBarHeard = new Shape(xPosition - song.getHeard()[3], yPosition, song.getHeard()[3], 15, Color.GREEN);
-        fourthBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[3], 15, Color.GREEN);
+        fourthBarHeard = new Shape(xPosition - song.getHeard()[3], yPosition,
+                song.getHeard()[3], 15, Color.GREEN);
+        fourthBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[3],
+                15, Color.GREEN);
         buildGlyph(xPosition, yPosition);
     }
 
     /**
      * Creates and returns a new square shape.
-     * 
-     * @return The new glyph
      */
     public void buildGlyph(int x, int y) {
-        
+
         window.addShape(songTitle);
         window.moveToFront(songTitle);
         window.addShape(songArtist);
