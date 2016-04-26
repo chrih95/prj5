@@ -27,7 +27,6 @@ public class GUIMusicWindow {
     private Window window;
     private DataList list;
     private LinkedList<Song> songList;
-    private GUIGlyph glyph;
     private String represent;
     private int index;
     private boolean clickedRepresent;
@@ -63,6 +62,7 @@ public class GUIMusicWindow {
         window.addButton(sortByGenreButton, WindowSide.NORTH);
         window.addButton(nextButton, WindowSide.NORTH);
         previousButton.disable();
+        nextButton.disable();
 
         window.addButton(representHobbyButton, WindowSide.SOUTH);
         window.addButton(representMajorButton, WindowSide.SOUTH);
@@ -125,12 +125,12 @@ public class GUIMusicWindow {
         heardText.setBackgroundColor(Color.WHITE);
         likedText.setBackgroundColor(Color.WHITE);
 
-        window.addShape(legend);
-        window.moveToBack(legend);
         window.addShape(songTitle);
         window.addShape(heardText);
         window.addShape(legendDivider);
         window.addShape(likedText);
+        window.addShape(legend);
+        window.moveToBack(legend);
     }
 
     /**
@@ -161,6 +161,8 @@ public class GUIMusicWindow {
 
             list.sortByYear();
         }
+        index = 0;
+        numGlyphs = 0;
         window.removeAllShapes();
         addGlyphs();
         makeLegend();
@@ -184,6 +186,7 @@ public class GUIMusicWindow {
                                 songList.getEntry(index));
                         xPos += 250;
                         index++;
+                        numGlyphs++;
                     }
                 }
             }
@@ -191,6 +194,11 @@ public class GUIMusicWindow {
         }
     }
 
+    /**
+     * Creates a legend based on the representation of song data
+     * @param x    The x position of the legend
+     * @param y    The y position of the legend
+     */
     private void legendRepresent(int x, int y) {
 
         if (represent.equals("H")) {
@@ -287,12 +295,8 @@ public class GUIMusicWindow {
         if (button.equals(representHobbyButton)) {
 
             represent = "H";
-            window.removeAllShapes();
-            makeLegend();
             for (int i = 0; i < songList.getLength(); i++) {
 
-                System.out.println(songList.getEntry(i).toString());
-                System.out.println(songList.getEntry(i).representHobby());
                 songList.getEntry(i).representHobby(); // Not sure if this saves
                                                        // changes in songlist or
                                                        // not
@@ -302,12 +306,8 @@ public class GUIMusicWindow {
         else if (button.equals(representMajorButton)) {
 
             represent = "M";
-            window.removeAllShapes();
-            makeLegend();
             for (int i = 0; i < songList.getLength(); i++) {
 
-                System.out.println(songList.getEntry(i).toString());
-                System.out.println(songList.getEntry(i).representMajor());
                 songList.getEntry(i).representMajor();
             }
         }
@@ -315,24 +315,34 @@ public class GUIMusicWindow {
         else if (button.equals(representRegionButton)) {
 
             represent = "R";
-            window.removeAllShapes();
-            makeLegend();
             for (int i = 0; i < songList.getLength(); i++) {
 
-                System.out.println(songList.getEntry(i).toString());
-                System.out.println(songList.getEntry(i).representRegion());
                 songList.getEntry(i).representRegion();
             }
         }
+        index = 0;
+        numGlyphs = 0;
+        window.removeAllShapes();
+        addGlyphs();
+        makeLegend();
         updateButtons();
     }
 
     /**
-     * Method updates the buttons if
+     * Method updates the buttons in the window
      */
     private void updateButtons() {
 
-        if (index == 0) {
+        if (clickedRepresent) {
+
+            sortByArtistButton.enable();
+            sortByTitleButton.enable();
+            sortByYearButton.enable();
+            sortByGenreButton.enable();
+            nextButton.enable();
+        }
+        
+        if (index - numGlyphs == 0) {
 
             previousButton.disable();
         }
@@ -349,14 +359,6 @@ public class GUIMusicWindow {
 
             nextButton.enable();
         }
-
-        if (clickedRepresent) {
-
-            sortByArtistButton.enable();
-            sortByTitleButton.enable();
-            sortByYearButton.enable();
-            sortByGenreButton.enable();
-        }
     }
 
     /**
@@ -370,9 +372,18 @@ public class GUIMusicWindow {
 
         if (button.equals(previousButton)) {
 
+            index = index - (9 + numGlyphs);
+            numGlyphs = 0;
+            window.removeAllShapes();
+            addGlyphs();
+            makeLegend();
         }
         else if (button.equals(nextButton)) {
 
+            numGlyphs = 0;
+            window.removeAllShapes();
+            addGlyphs();
+            makeLegend();
         }
         updateButtons();
     }
