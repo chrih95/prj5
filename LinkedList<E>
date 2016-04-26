@@ -99,7 +99,7 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
 
     /**
      * Method gets the entry at a given position
-     * 
+     * @param position The position of the entry to return
      * @return the entry at a given position
      * @throws IndexOutOfBoundsException
      *             if the index passed in is out of the bounds of the LinkedList
@@ -187,7 +187,9 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
 
     /**
      * Method replace an entry at a given position
-     * 
+     * @param position The position of the entry
+     * to be replaced
+     * @param replacementEntry The replacement entry
      * @return the entry that was replaced
      */
     @Override
@@ -257,7 +259,7 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         return new LinkedListIterator();
     }
 
-    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------
     /**
      * The Node class
      * 
@@ -321,7 +323,7 @@ public class LinkedList<E> implements ListInterface<E>, Iterable<E> {
         }
     }
 
-    // ----------------------------------------------------------------------------
+    // ------------------------------------------------------------
     /**
      * The inner iterator class
      * 
