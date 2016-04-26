@@ -46,6 +46,24 @@ public class LinkedListTest extends student.TestCase {
     }
     
     /**
+     * Tests the add() method
+     */
+    public void testAddEntry() {
+        Exception exception = null;
+        try
+        {
+            list.add(5, "tom");
+            fail("add() is not throwing an exception when it should");
+        }
+        catch (Exception e)
+        {
+            exception = e;
+        }
+        assertTrue("add() is throwing the wrong type of exceptions",
+            exception instanceof UnsupportedOperationException);
+    }
+    
+    /**
      * Tests the isEmpty() method
      */
     public void testIsEmpty() {
