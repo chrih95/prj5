@@ -33,24 +33,24 @@ public class GUIGlyph {
     public GUIGlyph(Window window, int xPosition, int yPosition, Song song) {
         this.window = window;
         
-        songTitle = new TextShape(xPosition - (song.getTitle().length()), yPosition, song.getTitle());
+        songTitle = new TextShape(xPosition - (song.getTitle().length()*4), yPosition, song.getTitle());
         yPosition = yPosition + songTitle.getHeight();
-        songArtist = new TextShape(xPosition - (song.getArtist().length()), yPosition, "by " + song.getArtist());
+        songArtist = new TextShape(xPosition - (song.getArtist().length()*4), yPosition, "by " + song.getArtist());
         yPosition = yPosition + songArtist.getHeight();
         divider = new Shape(xPosition, yPosition, 5, 60, Color.BLACK);
         songTitle.setBackgroundColor(Color.WHITE);
         songArtist.setBackgroundColor(Color.WHITE);
         firstBarHeard = new Shape(xPosition - (song.getHeard()[0]), yPosition,song.getHeard()[0] , 15, Color.MAGENTA);
-        firstBarLiked = new Shape(xPosition, yPosition,song.getLiked()[0] , 15, Color.MAGENTA);
+        firstBarLiked = new Shape(xPosition + 5, yPosition,song.getLiked()[0] , 15, Color.MAGENTA);
         yPosition = yPosition + 15;
         secondBarHeard = new Shape(xPosition - (song.getHeard()[1]), yPosition, song.getHeard()[1], 15, Color.BLUE);
-        secondBarLiked = new Shape(xPosition, yPosition, song.getLiked()[1], 15, Color.BLUE);
+        secondBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[1], 15, Color.BLUE);
         yPosition = yPosition + 15;
         thirdBarHeard = new Shape(xPosition - song.getHeard()[2], yPosition, song.getHeard()[2], 15, Color.ORANGE);
-        thirdBarLiked = new Shape(xPosition, yPosition, song.getLiked()[2], 15, Color.ORANGE);
+        thirdBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[2], 15, Color.ORANGE);
         yPosition = yPosition + 15;
         fourthBarHeard = new Shape(xPosition - song.getHeard()[3], yPosition, song.getHeard()[3], 15, Color.GREEN);
-        fourthBarLiked = new Shape(xPosition, yPosition, song.getLiked()[3], 15, Color.GREEN);
+        fourthBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[3], 15, Color.GREEN);
         buildGlyph(xPosition, yPosition);
     }
 
