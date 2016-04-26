@@ -53,6 +53,17 @@ public class DataListTest extends TestCase {
     }
     
     /**
+     * Tests the addSong() method
+     */
+     public void testAddSongNull() {
+         assertTrue(dataList.getSongList().isEmpty());
+         newSong = null;
+         dataList.addSong(newSong);
+         assertFalse(dataList.getSongList().contains(newSong));
+         assertTrue(dataList.getSongList().isEmpty());
+     }
+    
+    /**
      * Tests the addPerson() method
      */
     public void testAddPerson() {
@@ -69,7 +80,9 @@ public class DataListTest extends TestCase {
      */
     public void testAddPersonNull() {
         assertTrue(DataList.getPersonList().isEmpty());
-        dataList.addPerson(null);
+        newPerson = null;
+        dataList.addPerson(newPerson);
+        assertFalse(DataList.getPersonList().contains(newPerson));
         assertTrue(DataList.getPersonList().isEmpty());
     }
     
