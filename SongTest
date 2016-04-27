@@ -1,67 +1,312 @@
 package prj5;
 
 /**
-* A test class that tests the methods in the Song class
-*/
+ * SongTest tests the Song() class
+ * 
+ * @author Chandler
+ * @version 2016.04.16
+ */
 public class SongTest extends student.TestCase {
-    
+
     private Song song;
-    
+
     /**
      * Sets up the test case
      */
     @Override
     public void setUp() {
-        
-        song = new Song("Pop", "Adele", "Hello", 2016, 23);
+
+        song = new Song("Pop", "Adele", "Hello", 2016, 0);
     }
-    
+
     /**
      * Tests getGenre() on a pop Song
      */
     public void testGetGenre() {
-        
+
         assertEquals("Pop", song.getGenre());
     }
-    
+
     /**
      * Tests getArtist() on a Song by Adele
      */
     public void testGetArtist() {
-        
+
         assertEquals("Adele", song.getArtist());
     }
-    
+
     /**
      * Tests getTitle() on the Song "Hello"
      */
     public void testGetTitle() {
-        
+
         assertEquals("Hello", song.getTitle());
     }
-    
+
     /**
      * Tests getYear() on a Song from 2016
      */
     public void testGetYear() {
-        
+
         assertEquals(2016, song.getYear());
     }
-    
+
     /**
      * Tests getYear() on a Song with an index of 23
      */
     public void testGetIndex() {
-        
-        assertEquals(23, song.getIndex());
+
+        assertEquals(0, song.getIndex());
     }
 
     /**
      * Tests toString on a Song
      */
     public void testToString() {
-        
-        assertEquals("[Genre: Pop, Artist: Adele, Title: Hello, Year: 2016, "
-                + "Index: 23]", song.toString());
+
+        assertEquals("Song Title: Hello\nSong Artist: Adele\nSong Genre: Pop\n"
+                + "Song Year: 2016", song.toString());
+    }
+
+    /**
+     * Tests the representHobby method with "Yes" responses
+     */
+    public void testRepresentHobbyYes() {
+
+        DataList dataList = new DataList();
+        MajorEnum major = MajorEnum.COMPSCI;
+        RegionEnum region = RegionEnum.OTHER;
+        String[] yes = { "Yes" };
+        Person artPerson = new Person(major, HobbyEnum.ART, region, yes, yes);
+        Person sportsPerson = new Person(major, HobbyEnum.SPORTS, region, yes,
+                yes);
+        Person musicPerson = new Person(major, HobbyEnum.MUSIC, region, yes,
+                yes);
+        Person readingPerson = new Person(major, HobbyEnum.READING, region, yes,
+                yes);
+        dataList.addSong(song);
+        dataList.addPerson(artPerson);
+        dataList.addPerson(sportsPerson);
+        dataList.addPerson(musicPerson);
+        dataList.addPerson(readingPerson);
+        assertEquals(
+                "Heard\nreading:100 art:100 sports:100 music:100\nLikes:\n"
+                        + "reading:100 art:100 sports:100 music:100\n",
+                song.representHobby());
+    }
+
+    /**
+     * Tests the representHobby method with "No" responses
+     */
+    public void testRepresentHobbyNo() {
+
+        DataList dataList = new DataList();
+        MajorEnum major = MajorEnum.COMPSCI;
+        RegionEnum region = RegionEnum.OTHER;
+        String[] no = { "No" };
+        Person artPerson = new Person(major, HobbyEnum.ART, region, no, no);
+        Person sportsPerson = new Person(major, HobbyEnum.SPORTS, region, no,
+                no);
+        Person musicPerson = new Person(major, HobbyEnum.MUSIC, region, no, no);
+        Person readingPerson = new Person(major, HobbyEnum.READING, region, no,
+                no);
+        dataList.addSong(song);
+        dataList.addPerson(artPerson);
+        dataList.addPerson(sportsPerson);
+        dataList.addPerson(musicPerson);
+        dataList.addPerson(readingPerson);
+        assertEquals(
+                "Heard\nreading:0 art:0 sports:0 music:0\nLikes:\n"
+                        + "reading:0 art:0 sports:0 music:0\n",
+                song.representHobby());
+    }
+
+    /**
+     * Tests the representHobby method with "" responses
+     */
+    public void testRepresentHobbyBlank() {
+
+        DataList dataList = new DataList();
+        MajorEnum major = MajorEnum.COMPSCI;
+        RegionEnum region = RegionEnum.OTHER;
+        String[] blank = { "" };
+        Person artPerson = new Person(major, HobbyEnum.ART, region, blank,
+                blank);
+        Person sportsPerson = new Person(major, HobbyEnum.SPORTS, region, blank,
+                blank);
+        Person musicPerson = new Person(major, HobbyEnum.MUSIC, region, blank,
+                blank);
+        Person readingPerson = new Person(major, HobbyEnum.READING, region,
+                blank, blank);
+        dataList.addSong(song);
+        dataList.addPerson(artPerson);
+        dataList.addPerson(sportsPerson);
+        dataList.addPerson(musicPerson);
+        dataList.addPerson(readingPerson);
+        assertEquals(
+                "Heard\nreading:0 art:0 sports:0 music:0\nLikes:\n"
+                        + "reading:0 art:0 sports:0 music:0\n",
+                song.representHobby());
+    }
+
+    /**
+     * Tests the representMajor method with "Yes" responses
+     */
+    public void testRepresentMajorYes() {
+
+        DataList dataList = new DataList();
+        HobbyEnum hobby = HobbyEnum.ART;
+        RegionEnum region = RegionEnum.OTHER;
+        String[] yes = { "Yes" };
+        Person csPerson = new Person(MajorEnum.COMPSCI, hobby, region, yes,
+                yes);
+        Person mathPerson = new Person(MajorEnum.MATH, hobby, region, yes, yes);
+        Person engePerson = new Person(MajorEnum.ENGINEERING, hobby, region,
+                yes, yes);
+        Person otherPerson = new Person(MajorEnum.OTHER, hobby, region, yes,
+                yes);
+        dataList.addSong(song);
+        dataList.addPerson(csPerson);
+        dataList.addPerson(mathPerson);
+        dataList.addPerson(engePerson);
+        dataList.addPerson(otherPerson);
+        assertEquals("Heard\ncomp sci:100 math:100 other enge:100 other:100\n"
+                + "Likes:\ncompsci:100 southeast:100 other enge:100 "
+                + "other:100\n", song.representMajor());
+    }
+
+    /**
+     * Tests the representMajor method with "No" responses
+     */
+    public void testRepresentMajorNo() {
+
+        DataList dataList = new DataList();
+        HobbyEnum hobby = HobbyEnum.ART;
+        RegionEnum region = RegionEnum.OTHER;
+        String[] no = { "No" };
+        Person csPerson = new Person(MajorEnum.COMPSCI, hobby, region, no, no);
+        Person mathPerson = new Person(MajorEnum.MATH, hobby, region, no, no);
+        Person engePerson = new Person(MajorEnum.ENGINEERING, hobby, region, no,
+                no);
+        Person otherPerson = new Person(MajorEnum.OTHER, hobby, region, no, no);
+        dataList.addSong(song);
+        dataList.addPerson(csPerson);
+        dataList.addPerson(mathPerson);
+        dataList.addPerson(engePerson);
+        dataList.addPerson(otherPerson);
+        assertEquals("Heard\ncomp sci:0 math:0 other enge:0 other:0\n"
+                + "Likes:\ncompsci:0 southeast:0 other enge:0 " + "other:0\n",
+                song.representMajor());
+    }
+
+    /**
+     * Tests the representMajor method with "" responses
+     */
+    public void testRepresentMajorBlank() {
+
+        DataList dataList = new DataList();
+        HobbyEnum hobby = HobbyEnum.ART;
+        RegionEnum region = RegionEnum.OTHER;
+        String[] blank = { "" };
+        Person csPerson = new Person(MajorEnum.COMPSCI, hobby, region, blank,
+                blank);
+        Person mathPerson = new Person(MajorEnum.MATH, hobby, region, blank,
+                blank);
+        Person engePerson = new Person(MajorEnum.ENGINEERING, hobby, region,
+                blank, blank);
+        Person otherPerson = new Person(MajorEnum.OTHER, hobby, region, blank,
+                blank);
+        dataList.addSong(song);
+        dataList.addPerson(csPerson);
+        dataList.addPerson(mathPerson);
+        dataList.addPerson(engePerson);
+        dataList.addPerson(otherPerson);
+        assertEquals("Heard\ncomp sci:0 math:0 other enge:0 other:0\n"
+                + "Likes:\ncompsci:0 southeast:0 other enge:0 " + "other:0\n",
+                song.representMajor());
+    }
+
+    /**
+     * Tests the representRegion method with "Yes" responses
+     */
+    public void testRepresentRegionYes() {
+
+        DataList dataList = new DataList();
+        HobbyEnum hobby = HobbyEnum.ART;
+        MajorEnum major = MajorEnum.COMPSCI;
+        String[] yes = { "Yes" };
+        Person nePerson = new Person(major, hobby, RegionEnum.NORTHEAST, yes,
+                yes);
+        Person sePerson = new Person(major, hobby, RegionEnum.SOUTHEAST, yes,
+                yes);
+        Person usPerson = new Person(major, hobby, RegionEnum.USOTHER, yes,
+                yes);
+        Person otherPerson = new Person(major, hobby, RegionEnum.OTHER, yes,
+                yes);
+        dataList.addSong(song);
+        dataList.addPerson(nePerson);
+        dataList.addPerson(sePerson);
+        dataList.addPerson(usPerson);
+        dataList.addPerson(otherPerson);
+        assertEquals(
+                "Heard\nnortheast:100 southeast:100 US other:100 other:100\n"
+                        + "Likes:\nnortheast:100 southeast:100 US other:100 "
+                        + "other:100\n",
+                song.representRegion());
+    }
+
+    /**
+     * Tests the representRegion method with "No" responses
+     */
+    public void testRepresentRegionNo() {
+
+        DataList dataList = new DataList();
+        HobbyEnum hobby = HobbyEnum.ART;
+        MajorEnum major = MajorEnum.COMPSCI;
+        String[] no = { "No" };
+        Person nePerson = new Person(major, hobby, RegionEnum.NORTHEAST, no,
+                no);
+        Person sePerson = new Person(major, hobby, RegionEnum.SOUTHEAST, no,
+                no);
+        Person usPerson = new Person(major, hobby, RegionEnum.USOTHER, no, no);
+        Person otherPerson = new Person(major, hobby, RegionEnum.OTHER, no, no);
+        dataList.addSong(song);
+        dataList.addPerson(nePerson);
+        dataList.addPerson(sePerson);
+        dataList.addPerson(usPerson);
+        dataList.addPerson(otherPerson);
+        assertEquals(
+                "Heard\nnortheast:0 southeast:0 US other:0 other:0\n"
+                        + "Likes:\nnortheast:0 southeast:0 US other:0 "
+                        + "other:0\n", song.representRegion());
+    }
+
+    /**
+     * Tests the representRegion method with "" responses
+     */
+    public void testRepresentRegionBlank() {
+
+        DataList dataList = new DataList();
+        HobbyEnum hobby = HobbyEnum.ART;
+        MajorEnum major = MajorEnum.COMPSCI;
+        String[] blank = { "" };
+        Person nePerson = new Person(major, hobby, RegionEnum.NORTHEAST, blank,
+                blank);
+        Person sePerson = new Person(major, hobby, RegionEnum.SOUTHEAST, blank,
+                blank);
+        Person usPerson = new Person(major, hobby, RegionEnum.USOTHER, blank,
+                blank);
+        Person otherPerson = new Person(major, hobby, RegionEnum.OTHER, blank,
+                blank);
+        dataList.addSong(song);
+        dataList.addPerson(nePerson);
+        dataList.addPerson(sePerson);
+        dataList.addPerson(usPerson);
+        dataList.addPerson(otherPerson);
+        assertEquals(
+                "Heard\nnortheast:0 southeast:0 US other:0 other:0\n"
+                        + "Likes:\nnortheast:0 southeast:0 US other:0 "
+                        + "other:0\n",
+                song.representRegion());
     }
 }
