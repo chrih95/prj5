@@ -302,11 +302,15 @@ public class LinkedListTest extends student.TestCase {
      */
     public void testInsertionSort() {
         CompareArtist comparer = new CompareArtist();
+        CompareGenre compG = new CompareGenre();
         LinkedList<Song> songList = new LinkedList<Song>();
         Song songHello = new Song("Pop", "Adele", "Hello", 2016, 23);
         Song songYeah = new Song("Hip Hop", "Usher", "Yeah!", 2004, 5);
         songList.add(songHello);
         songList.add(songYeah);
+        assertEquals(songYeah, songList.getEntry(0));
+        assertEquals(songHello, songList.getEntry(1));
+        songList.insertionSort(compG);
         assertEquals(songYeah, songList.getEntry(0));
         assertEquals(songHello, songList.getEntry(1));
         
