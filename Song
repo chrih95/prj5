@@ -45,7 +45,7 @@ public class Song {
         heard = new int[4];
         liked = new int[4];
     }
-    
+
     /**
      * Returns the percentages of people who have heard the song in an array,
      * where the each element is a category of how the people are represented.
@@ -53,21 +53,21 @@ public class Song {
      * @return the percentages of people who have heard the song in an array
      */
     public int[] getHeard() {
-        
+
         return heard;
     }
-    
+
     /**
-     * Returns the percentages of people who liked the song in an array,
-     * where the each element is a category of how the people are represented.
+     * Returns the percentages of people who liked the song in an array, where
+     * the each element is a category of how the people are represented.
      * 
      * @return the percentages of people who liked the song in an array
      */
     public int[] getLiked() {
-        
+
         return liked;
     }
-    
+
     /**
      * Method returns the genre of the song
      * 
@@ -154,36 +154,37 @@ public class Song {
             String[] heardPerson = person.getHeard();
             String heardResponse = heardPerson[index];
             HobbyEnum hobby = person.getHobby();
-            
+
             if (heardResponse.equals("Yes")) {
-                
+
                 heardSong[hobby.getArrayIndex()]++;
                 heardHobby[hobby.getArrayIndex()]++;
             }
             else if (heardResponse.equals("No")) {
-                
+
                 heardHobby[hobby.getArrayIndex()]++;
             }
-            
+
             String[] likedPerson = person.getLiked();
             String likedResponse = likedPerson[index];
 
             if (likedResponse.equals("Yes")) {
-                
+
                 likedSong[hobby.getArrayIndex()]++;
                 likedHobby[hobby.getArrayIndex()]++;
             }
             else if (likedResponse.equals("No")) {
-                
+
                 likedHobby[hobby.getArrayIndex()]++;
             }
         }
-        
+
         calculatePercents(heardSong, heardHobby, likedSong, likedHobby);
 
         heard = heardSong;
         liked = likedSong;
-        
+
+        // this.toString();
         StringBuilder hobbyString = new StringBuilder("Heard\n");
         hobbyString.append("reading:" + heardSong[0] + " art:" + heardSong[1]
                 + " sports:" + heardSong[2] + " music:" + heardSong[3] + "\n");
@@ -192,7 +193,7 @@ public class Song {
                 + " sports:" + likedSong[2] + " music:" + likedSong[3] + "\n");
         return hobbyString.toString();
     }
-    
+
     /**
      * Represents the student survey data by region.
      * 
@@ -212,47 +213,48 @@ public class Song {
             String[] heardPerson = person.getHeard();
             String heardResponse = heardPerson[index];
             RegionEnum region = person.getRegion();
-            
+
             if (heardResponse.equals("Yes")) {
-                
+
                 heardSong[region.getArrayIndex()]++;
                 heardRegion[region.getArrayIndex()]++;
             }
             else if (heardResponse.equals("No")) {
-                
+
                 heardRegion[region.getArrayIndex()]++;
             }
-            
+
             String[] likedPerson = person.getLiked();
             String likedResponse = likedPerson[index];
 
             if (likedResponse.equals("Yes")) {
-                
+
                 likedSong[region.getArrayIndex()]++;
                 likedRegion[region.getArrayIndex()]++;
             }
             else if (likedResponse.equals("No")) {
-                
+
                 likedRegion[region.getArrayIndex()]++;
             }
         }
-        
+
         calculatePercents(heardSong, heardRegion, likedSong, likedRegion);
 
         heard = heardSong;
         liked = likedSong;
-        
-        StringBuilder hobbyString = new StringBuilder("Heard\n");
-        hobbyString.append("northeast:" + heardSong[0] + " southeast:" 
-                + heardSong[1] + " US other:" + heardSong[2] + " other:" 
+
+        this.toString();
+        StringBuilder regionString = new StringBuilder("Heard\n");
+        regionString.append("northeast:" + heardSong[0] + " southeast:"
+                + heardSong[1] + " US other:" + heardSong[2] + " other:"
                 + heardSong[3] + "\n");
-        hobbyString.append("Likes:\n");
-        hobbyString.append("northeast:" + likedSong[0] + " southeast:" 
-                + likedSong[1] + " US other:" + likedSong[2] + " other:" 
+        regionString.append("Likes:\n");
+        regionString.append("northeast:" + likedSong[0] + " southeast:"
+                + likedSong[1] + " US other:" + likedSong[2] + " other:"
                 + likedSong[3] + "\n");
-        return hobbyString.toString();
+        return regionString.toString();
     }
-    
+
     /**
      * Represents the student survey data by region.
      * 
@@ -272,51 +274,67 @@ public class Song {
             String[] heardPerson = person.getHeard();
             String heardResponse = heardPerson[index];
             MajorEnum major = person.getMajor();
-            
+
             if (heardResponse.equals("Yes")) {
-                
+
                 heardSong[major.getArrayIndex()]++;
                 heardMajor[major.getArrayIndex()]++;
             }
             else if (heardResponse.equals("No")) {
-                
+
                 heardMajor[major.getArrayIndex()]++;
             }
-            
+
             String[] likedPerson = person.getLiked();
             String likedResponse = likedPerson[index];
 
             if (likedResponse.equals("Yes")) {
-                
+
                 likedSong[major.getArrayIndex()]++;
                 likedMajor[major.getArrayIndex()]++;
             }
             else if (likedResponse.equals("No")) {
-                
+
                 likedMajor[major.getArrayIndex()]++;
             }
         }
-        
+
         calculatePercents(heardSong, heardMajor, likedSong, likedMajor);
 
         heard = heardSong;
         liked = likedSong;
-        
-        StringBuilder hobbyString = new StringBuilder("Heard\n");
-        hobbyString.append("comp sci:" + heardSong[0] + " math:" 
-                + heardSong[1] + " other enge:" + heardSong[2] + " other:" 
-                + heardSong[3] + "\n");
-        hobbyString.append("Likes:\n");
-        hobbyString.append("compsci:" + likedSong[0] + " southeast:" 
-                + likedSong[1] + " other enge:" + likedSong[2] + " other:" 
+
+        toString();
+        StringBuilder majorString = new StringBuilder("Heard\n");
+        majorString.append("comp sci:" + heardSong[0] + " math:" + heardSong[1]
+                + " other enge:" + heardSong[2] + " other:" + heardSong[3]
+                + "\n");
+        majorString.append("Likes:\n");
+        majorString.append("compsci:" + likedSong[0] + " southeast:"
+                + likedSong[1] + " other enge:" + likedSong[2] + " other:"
                 + likedSong[3] + "\n");
-        return hobbyString.toString();
+        return majorString.toString();
     }
-    
-    private void calculatePercents(int[] heardSong, int[] heardTotal
-            , int[] likedSong, int[] likedTotal) {
-        
-        //percentages for heards
+
+    /**
+     * Helper Method calculates the percentages of people that have heard or
+     * liked a song.
+     * 
+     * @param heardSong
+     *            Number of people that have heard of a song, split by
+     *            representation
+     * @param heardTotal
+     *            Total number of people split by representation
+     * @param likedSong
+     *            Number of people that have liked of a song, split by
+     *            representation
+     * @param likedTotal
+     *            Total number of people split by representation
+     */
+    private void calculatePercents(int[] heardSong, int[] heardTotal,
+            int[] likedSong, int[] likedTotal) {
+
+        // percentages for heards
         if (heardTotal[0] != 0) {
 
             heardSong[0] = (heardSong[0] * 100) / heardTotal[0];
@@ -345,7 +363,7 @@ public class Song {
         else {
             heardSong[3] = 0;
         }
-        
+
         // percentages for likes
         if (likedTotal[0] != 0) {
 
