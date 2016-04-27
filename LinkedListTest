@@ -75,6 +75,42 @@ public class LinkedListTest extends student.TestCase {
     }
     
     /**
+     * Tests the remove() method when 1 item in list
+     */
+    public void testRemoveOne() {
+        assertEquals(0, list.getLength());
+        list.add("bob");
+        assertEquals(1, list.getLength());
+        assertEquals("bob", list.remove(0));
+        assertEquals(0, list.getLength());
+    }
+    
+    /**
+     * Tests the remove() method when removing first
+     * entry of two
+     */
+    public void testRemoveOneofTwo() {
+        assertEquals(0, list.getLength());
+        list.add("bob");
+        list.add("frank");
+        assertEquals(2, list.getLength());
+        assertEquals("frank", list.remove(0));
+        assertEquals(1, list.getLength());
+    }
+    
+    /**
+     * Tests the remove() method on last item
+     */
+    public void testRemoveLast() {
+        assertEquals(0, list.getLength());
+        list.add("bob");
+        list.add("frank");
+        assertEquals(2, list.getLength());
+        assertEquals("frank", list.remove(1));
+        assertEquals(1, list.getLength());
+    }
+    
+    /**
      * Tests the remove() method
      */
     public void testRemove() {
