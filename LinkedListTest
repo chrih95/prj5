@@ -78,6 +78,18 @@ public class LinkedListTest extends student.TestCase {
      * Tests the remove() method
      */
     public void testRemove() {
+        Exception exception = null;
+        try
+        {
+            list.remove(0);
+            fail("Index is out of bounds");
+        }
+        catch (Exception e)
+        {
+            exception = e;
+        }
+        assertTrue("Index is out of bounds",
+            exception instanceof IndexOutOfBoundsException);
         assertEquals(0, list.getLength());
         list.add("bob");
         assertEquals(1, list.getLength());
@@ -88,6 +100,7 @@ public class LinkedListTest extends student.TestCase {
         list.add("frank");
         assertEquals(3, list.getLength());
         assertEquals("bob", list.remove(2));
+        assertFalse(list.getLength() == 0);
         assertEquals(2, list.getLength());
         
         // index greater than length
