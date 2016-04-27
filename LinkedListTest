@@ -314,4 +314,26 @@ public class LinkedListTest extends student.TestCase {
         assertEquals(songHello, songList.getEntry(0));
         assertEquals(songYeah, songList.getEntry(1));
     }
+    
+    /**
+     * Tests the next() method
+     */
+    public void testNext() {
+        list.add("bob");
+        
+        Exception exception = null;
+        try
+        {
+            list.iterator().next();
+            fail("Illegal call to next(); "
+                    + "iterator is after end of list.");
+        }
+        catch (Exception e)
+        {
+            exception = e;
+        }
+        assertTrue("Illegal call to next(); "
+                + "iterator is after end of list.",
+            exception instanceof NoSuchElementException);
+    }
 }
