@@ -12,87 +12,115 @@ import java.awt.Color;
  */
 public class GUIGlyph {
 
-    private TextShape songTitle;
-    private TextShape songArtist;
-    private Shape firstBarHeard;
-    private Shape firstBarLiked;
-    private Shape secondBarHeard;
-    private Shape secondBarLiked;
-    private Shape thirdBarHeard;
-    private Shape thirdBarLiked;
-    private Shape fourthBarHeard;
-    private Shape fourthBarLiked;
-    private Shape divider;
     private Window window;
+    private int yPos;
+    private int xPos;
+    private Song song;
 
     /**
      * Creates a new glyph.
      * 
      * @author Christian Hawkes
+     * @param window
+     *            The window that the glyphs are displayed on
+     * @param xPosition
+     *            The x coordinate reference point for the glyph
+     * @param yPosition
+     *            The y coordinate reference point for the glyph
+     * @param song
+     *            The song that the glyph is being made out of
+     * @param sort
+     *            The method the glyphs are being sorted
      */
-    public GUIGlyph(Window window, int xPosition, int yPosition, Song song) {
-        this.window = window;
+    public GUIGlyph(Window window, int xPosition, int yPosition, Song song,
+            String sort) {
 
-        songTitle = new TextShape(xPosition, yPosition, song.getTitle());
-        songTitle.setX(xPosition - (songTitle.getWidth() / 2));
-        songTitle.setY(yPosition);
-        yPosition = yPosition + songTitle.getHeight();
-        songArtist = new TextShape(xPosition, yPosition,
-                "by " + song.getArtist());
-        songArtist.setX(xPosition - (songArtist.getWidth() / 2));
-        songArtist.setY(yPosition);
-        yPosition = yPosition + songArtist.getHeight();
-        divider = new Shape(xPosition, yPosition, 5, 60, Color.BLACK);
+        this.window = window;
+        this.yPos = yPosition;
+        this.xPos = xPosition;
+        this.song = song;
+        int sortHeight = 0;
+
+
+        TextShape songTitle = new TextShape(xPos, yPos, song.getTitle());
+        songTitle.setX(xPos - (songTitle.getWidth() / 2));
+        songTitle.setY(yPos);
+        yPos = yPos + songTitle.getHeight();
+        window.addShape(songTitle);
+        sortHeight = pickSort(sort);
+        yPos = yPos + sortHeight + 5;
+        Shape divider = new Shape(xPos, yPos, 5, 60, Color.BLACK);
         songTitle.setBackgroundColor(Color.WHITE);
-        songArtist.setBackgroundColor(Color.WHITE);
-        firstBarHeard = new Shape(xPosition - (song.getHeard()[0]), yPosition,
+        window.addShape(divider);
+        Shape firstBarHeard = new Shape(xPos - (song.getHeard()[0]), yPos,
                 song.getHeard()[0], 15, Color.MAGENTA);
-        firstBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[0],
-                15, Color.MAGENTA);
-        yPosition = yPosition + 15;
-        secondBarHeard = new Shape(xPosition - (song.getHeard()[1]), yPosition,
+        window.addShape(firstBarHeard);
+        Shape firstBarLiked = new Shape(xPos + 5, yPos, song.getLiked()[0], 15,
+                Color.MAGENTA);
+        window.addShape(firstBarLiked);
+        yPos = yPos + 15;
+        Shape secondBarHeard = new Shape(xPos - (song.getHeard()[1]), yPos,
                 song.getHeard()[1], 15, Color.BLUE);
-        secondBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[1],
-                15, Color.BLUE);
-        yPosition = yPosition + 15;
-        thirdBarHeard = new Shape(xPosition - song.getHeard()[2], yPosition,
+        window.addShape(secondBarHeard);
+        Shape secondBarLiked = new Shape(xPos + 5, yPos, song.getLiked()[1], 15,
+                Color.BLUE);
+        window.addShape(secondBarLiked);
+        yPos = yPos + 15;
+        Shape thirdBarHeard = new Shape(xPos - song.getHeard()[2], yPos,
                 song.getHeard()[2], 15, Color.ORANGE);
-        thirdBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[2],
-                15, Color.ORANGE);
-        yPosition = yPosition + 15;
-        fourthBarHeard = new Shape(xPosition - song.getHeard()[3], yPosition,
+        window.addShape(thirdBarHeard);
+        Shape thirdBarLiked = new Shape(xPos + 5, yPos, song.getLiked()[2], 15,
+                Color.ORANGE);
+        window.addShape(thirdBarLiked);
+        yPos = yPos + 15;
+        Shape fourthBarHeard = new Shape(xPos - song.getHeard()[3], yPos,
                 song.getHeard()[3], 15, Color.GREEN);
-        fourthBarLiked = new Shape(xPosition + 5, yPosition, song.getLiked()[3],
-                15, Color.GREEN);
-        buildGlyph(xPosition, yPosition);
+        window.addShape(fourthBarHeard);
+        Shape fourthBarLiked = new Shape(xPos + 5, yPos, song.getLiked()[3], 15,
+                Color.GREEN);
+        window.addShape(fourthBarLiked);
     }
 
     /**
-     * Creates and returns a new square shape.
+     * Helper method displays the part of the song that the songs are being
+     * sorted by
+     * 
+     * @param sort
+     *            The part of the song that the songs are being sorted by
+     * @return The height of the added TextShape
      */
-    public void buildGlyph(int x, int y) {
+    private int pickSort(String sort) {
 
-        window.addShape(songTitle);
-        window.moveToFront(songTitle);
-        window.addShape(songArtist);
-        window.moveToFront(songArtist);
-        window.addShape(firstBarHeard);
-        window.moveToFront(firstBarHeard);
-        window.addShape(firstBarLiked);
-        window.moveToFront(firstBarLiked);
-        window.addShape(secondBarHeard);
-        window.moveToFront(secondBarHeard);
-        window.addShape(secondBarLiked);
-        window.moveToFront(secondBarLiked);
-        window.addShape(thirdBarHeard);
-        window.moveToFront(thirdBarHeard);
-        window.addShape(thirdBarLiked);
-        window.moveToFront(thirdBarLiked);
-        window.addShape(fourthBarHeard);
-        window.moveToFront(fourthBarHeard);
-        window.addShape(fourthBarLiked);
-        window.moveToFront(fourthBarLiked);
-        window.addShape(divider);
-        window.moveToFront(divider);
+        if (sort.equals("G")) {
+
+            TextShape songGenre = new TextShape(xPos, yPos,
+                    "genre: " + song.getGenre());
+            songGenre.setX(xPos - (songGenre.getWidth() / 2));
+            songGenre.setY(yPos);
+            window.addShape(songGenre);
+            songGenre.setBackgroundColor(Color.WHITE);
+            return songGenre.getHeight();
+        }
+        else if (sort.equals("Y")) {
+
+            TextShape songYear = new TextShape(xPos, yPos,
+                    "year: " + song.getYear());
+            songYear.setX(xPos - (songYear.getWidth() / 2));
+            songYear.setY(yPos);
+            window.addShape(songYear);
+            songYear.setBackgroundColor(Color.WHITE);
+            return songYear.getHeight();
+        }
+
+        else {
+
+            TextShape songArtist = new TextShape(xPos, yPos,
+                    "by " + song.getArtist());
+            songArtist.setX(xPos - (songArtist.getWidth() / 2));
+            songArtist.setY(yPos);
+            window.addShape(songArtist);
+            songArtist.setBackgroundColor(Color.WHITE);
+            return songArtist.getHeight();
+        }
     }
 }
