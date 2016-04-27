@@ -28,6 +28,7 @@ public class GUIMusicWindow {
     private DataList list;
     private LinkedList<Song> songList;
     private String represent;
+    private String sort;
     private int index;
     private boolean clickedRepresent;
     private int numGlyphs;
@@ -88,6 +89,7 @@ public class GUIMusicWindow {
         clickedRepresent = false;
         window.setSize(1020, 770);
         represent = "";
+        sort = "";
         index = 0;
         numGlyphs = 0;
         songList = list.getSongList();
@@ -145,21 +147,25 @@ public class GUIMusicWindow {
         if (button.equals(sortByArtistButton)) {
 
             list.sortByArtist();
+            sort = "";
         }
 
         else if (button.equals(sortByGenreButton)) {
 
             list.sortByGenre();
+            sort = "G";
         }
 
         else if (button.equals(sortByTitleButton)) {
 
             list.sortByTitle();
+            sort = "";
         }
 
         else if (button.equals(sortByYearButton)) {
 
             list.sortByYear();
+            sort = "Y";
         }
         index = 0;
         numGlyphs = 0;
@@ -169,6 +175,9 @@ public class GUIMusicWindow {
         updateButtons();
     }
 
+    /**
+     * Helper method adds the glyphs to the window
+     */
     private void addGlyphs() {
 
         int xPos = 150;
@@ -183,7 +192,7 @@ public class GUIMusicWindow {
                     if (index != songList.getLength()) {
 
                         new GUIGlyph(window, xPos, yPos,
-                                songList.getEntry(index));
+                                songList.getEntry(index), sort);
                         xPos += 250;
                         index++;
                         numGlyphs++;
@@ -225,7 +234,6 @@ public class GUIMusicWindow {
             window.addShape(thirdText);
             window.addShape(fourthText);
         }
-
         else if (represent.equals("M")) {
 
             TextShape legendText = new TextShape(x + 30, y + 5, "Major Legend");
@@ -250,7 +258,6 @@ public class GUIMusicWindow {
             window.addShape(thirdText);
             window.addShape(fourthText);
         }
-
         else if (represent.equals("R")) {
 
             TextShape legendText = new TextShape(x + 30, y + 5,
